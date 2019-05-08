@@ -180,7 +180,7 @@ Ext.define('Query.view.main.Main', {
     success: function(response, opts) {
         var obj = Ext.decode(response.responseText);
         console.dir(obj);
-        localStorage.setItem('logo', obj.data.logo);
+        localStorage.setItem('logo', obj.empresa.logo);
     },
 
     failure: function(response, opts) {
