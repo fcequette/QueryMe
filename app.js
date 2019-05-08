@@ -24,6 +24,11 @@ Ext.application({
     // of merge conflicts when upgrading to new versions of Sencha Cmd.
     //-------------------------------------------------------------------------
 });
+Ext.Ajax._defaultHeaders = {
+  'Access-Control-Allow-Credentials' : true,
+    'Access-Control-Allow-Origin':'*',
+    'Content-Type':'application/json',
+};
 Ext.define('Query.store.store0', {
     extend: 'Ext.data.Store',
 

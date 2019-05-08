@@ -14,8 +14,9 @@ autoLoad:true,
     proxy: {
       type: 'ajax'
       // ,url: 'https://api.myjson.com/bins/17pc0w'
-      ,url: 'https://api.myjson.com/bins/17vyj0'
-      
+      //,url: 'https://api.myjson.com/bins/17vyj0'
+      ,url: 'http://grupobinario.sytes.net:8080/paneles'
+
       ,method: 'GET'
         ,reader: {
             type: 'json',

@@ -174,6 +174,19 @@ Ext.define('Query.view.main.Main', {
 ,listeners:{
   painted: function(c){
     console.log('hola');
+    Ext.Ajax.request({
+    url: 'http://grupobinario.sytes.net:8080/empresas',
+
+    success: function(response, opts) {
+        var obj = Ext.decode(response.responseText);
+        console.dir(obj);
+        localStorage.setItem('logo', obj.data.logo);
+    },
+
+    failure: function(response, opts) {
+        console.log('server-side failure with status code ' + response.status);
+    }
+});
     Ext.defer(function() {
     Ext.getStore('Paneles').each(
       function(rec,e){
