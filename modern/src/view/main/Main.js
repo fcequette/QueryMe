@@ -32,7 +32,7 @@ Ext.define('Query.view.main.Main', {
         xtype:'label'
         ,itemId:'labelHeader'
         ,style:'color:#FFF;font-size:15px;padding:40px;'
-        ,html: '<img  width="100%" height="100%" src="'+localStorage.getItem('logo')+'" alt="Jorge Sampaoli" />'
+        ,html: '<img  width="100%" height="100%" src="data:image/png;base64,'+localStorage.getItem('logo')+'" alt="Jorge Sampaoli" />'
         //<a style="line-height: 40px;font-weight:bold;color:#FFF;font-size:20px"> Complejo JS</a>'
         ,padding: 1
 
