@@ -181,6 +181,8 @@ Ext.define('Query.view.main.Main', {
         var obj = Ext.decode(response.responseText);
         console.dir(obj);
         localStorage.setItem('logo', obj.empresas.logo);
+        localStorage.setItem('empresa', obj.empresas.empresa);
+        localStorage.setItem('encuesta', 1);
     },
 
     failure: function(response, opts) {
