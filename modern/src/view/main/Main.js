@@ -25,7 +25,7 @@ Ext.define('Query.view.main.Main', {
 
         xtype:'button'
         ,iconCls: 'x-fa fa-bars'
-        ,style:"background-color: #936713; border: none;color: #FFF;padding-left: 5px;"
+        ,style:"background-color:"+localStorage.getItem('colorPrincipal')+"; border: none;color: #FFF;padding-left: 5px;"
         ,hidden: true
 
   },{
@@ -162,7 +162,7 @@ Ext.define('Query.view.main.Main', {
       text: 'Guardar',
       itemId:'btnGua',
       hidden:true,
-      style:"background-color: #936713; border: none;color: #FFF;padding-left: 5px;",
+      style:"background-color:"+ localStorage.getItem('colorPrincipal') + "border: none;color: #FFF;padding-left: 5px;",
       handler: function(btn,e){
         //alert('submit del formulario');
         //Ext.ComponentQuery.query('#formini')[0].submit({ url: 'PostMyData/To', method: 'Post', jsonSubmit: true success: function() { Ext.Msg.alert("success"); }, failure: function() { Ext.Msg.alert("error"); } });
@@ -207,7 +207,7 @@ Ext.define('Query.view.main.Main', {
                   defaultPhonePickerConfig : {
                     doneButton : 'Aceptar',
                     cancelButton : 'Cancelar',
-                    style:'background:#936713'
+                    style:'background:'+localStorage('colorPrincipal')
 
                   }
                 }
