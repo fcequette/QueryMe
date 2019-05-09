@@ -92,7 +92,7 @@ Ext.define('Query.view.main.Main', {
   },{
     docked: 'bottom',
     xtype: 'toolbar',
-    style:'background-color:#936713',
+    style:'background-color:'+localStorage.getItem('colorPrincipal'),
     items: [{
       xtype:'button'
       ,text: 'Anterior'
