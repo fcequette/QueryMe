@@ -124,7 +124,7 @@ Ext.define('Query.view.main.Main', {
       xtype:'button'
       ,text: 'Siguiente'
       ,itemId:'btnSig'
-      ,style:"background-color: #936713; border: none;color: #FFF;padding-left: 5px;"
+      ,style:"background-color:"+localStorage.getItem('colorPrincipal')+ "border: none;color: #FFF;padding-left: 5px;"
       ,handler: function(btn,e) {
          var cardActive = Ext.ComponentQuery.query('#formini')[0]._activeItem._itemId
            console.log('cardActive',cardActive);
@@ -183,6 +183,8 @@ Ext.define('Query.view.main.Main', {
         localStorage.setItem('logo', obj.empresas.logo);
         localStorage.setItem('empresa', obj.empresas.empresa);
         localStorage.setItem('encuesta', 1);
+        localStorage.setItem('colorPrincipal', obj.empresas.colorPrincipal);
+        localStorage.setItem('colorSecundario', obj.empresas.colorSecundario);
     },
 
     failure: function(response, opts) {
