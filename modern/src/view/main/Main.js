@@ -207,7 +207,7 @@ Ext.define('Query.view.main.Main', {
                   defaultPhonePickerConfig : {
                     doneButton : 'Aceptar',
                     cancelButton : 'Cancelar',
-                    style:'background:'+localStorage('colorPrincipal')
+                    style:'background:'+localStorage.getItem('colorPrincipal')
 
                   }
                 }
