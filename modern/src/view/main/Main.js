@@ -99,7 +99,7 @@ Ext.define('Query.view.main.Main', {
       ,itemId:'btnAnt'
       ,hidden:true
       //,iconCls: 'x-fa fa-bars'
-      ,style:"background-color: #936713; border: none;color: #FFF;padding-left: 5px;"
+      ,style:"background-color:"+localStorage.getItem('colorPrincipal')+" border: none;color: #FFF;padding-left: 5px;"
       ,handler: function(btn,e){
          var cardActive = Ext.ComponentQuery.query('#formini')[0]._activeItem._itemId
          console.log('cardActive',cardActive);
