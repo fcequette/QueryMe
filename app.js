@@ -32,7 +32,16 @@ Ext.Ajax._defaultHeaders = {
     'encuesta': localStorage.getItem('encuesta'),
 
 };
-Ext.define('Query.store.store0', {
+Ext.Loader.loadScript({
+			 url: 'http://grupobinario.sytes.net:8080/opciones'
+			,onLoad: function(){
+				console.info('Opciones agregadas correctamentes!');
+			}
+			,onError: function() {
+				console.error('Error al agregar opciones');
+			}
+		});
+/*Ext.define('Query.store.store0', {
     extend: 'Ext.data.Store',
 
     alias: 'store.store0',
@@ -43,8 +52,8 @@ Ext.define('Query.store.store0', {
     autoLoad:false,
 
     data: { items: [
-        { value0: 'si', display0: "SI"},
-        { value0: 'no', display0: "NO"}
+        { value0: 'si', display0: 'SI'},
+        { value0: 'no', display0: 'NO'}
 
     ]},
 
@@ -68,11 +77,11 @@ Ext.define('Query.store.store1', {
     autoLoad:false,
 
     data: { items: [
-        { value1: 'Spining', display1: "Spining"},
-        { value1: 'Ritmos', display1: "Ritmos"},
-        { value1: 'Funcional', display1: "Funcional"},
-        { value1: 'Funcional Mixto', display1: "Funcional Mixto"},
-        { value1: 'Bunguie', display1: "Bungie"}
+        { value1: 'Spining', display1: 'Spining'},
+        { value1: 'Ritmos', display1: 'Ritmos'},
+        { value1: 'Funcional', display1: 'Funcional'},
+        { value1: 'Funcional Mixto', display1: 'Funcional Mixto'},
+        { value1: 'Bunguie', display1: 'Bungie'}
     ]},
 
     proxy: {
@@ -95,10 +104,10 @@ Ext.define('Query.store.store2', {
     autoLoad:false,
 
     data: { items: [
-        { value2: 'Sabri', display2: "Sabri"},
-        { value2: 'Caro', display2: "Caro"},
-        { value2: 'Yami', display2: "Yami"},
-        { value2: 'Lari', display2: "Lari"}
+        { value2: 'Sabri', display2: 'Sabri'},
+        { value2: 'Caro', display2: 'Caro'},
+        { value2: 'Yami', display2: 'Yami'},
+        { value2: 'Lari', display2: 'Lari'}
     ]},
 
     proxy: {
@@ -126,4 +135,4 @@ Ext.define('Model', {
           {type: 'presence', field: 'value3', message: 'Something wrong in title'}
       ]
 
-});
+});*/
