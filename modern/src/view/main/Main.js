@@ -109,6 +109,7 @@ Ext.define('Query.view.main.Main', {
            num = Ext.getStore('Paneles').count() -2;
            var numNext = parseInt(num) -1;
            Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
+           Ext.ComponentQuery.query('#btnSig')[0].show();
          }else{
            if(num == 1){
               Ext.ComponentQuery.query('#btnAnt')[0].hide();
