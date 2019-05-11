@@ -103,6 +103,7 @@ Ext.define('Query.view.main.Main', {
       ,handler: function(btn,e){
          var cardActive = Ext.ComponentQuery.query('#formini')[0]._activeItem._itemId
          console.log('cardActive',cardActive);
+         Ext.ComponentQuery.query('#btnGua')[0].hide();
          var num = cardActive.substr(-1);
          if(num == 9 ){
            num = Ext.getStore('Paneles').count() -2;
@@ -116,7 +117,7 @@ Ext.define('Query.view.main.Main', {
            }else{
              var numNext = parseInt(num) -1;
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
-             Ext.ComponentQuery.query('#btnGua')[0].hide();
+             Ext.ComponentQuery.query('#btnSig')[0].show();
            }
         }
       }
