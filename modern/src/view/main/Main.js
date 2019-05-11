@@ -148,6 +148,7 @@ Ext.define('Query.view.main.Main', {
                     }else{
                        Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card9999');
                        btn.hide();
+                       Ext.ComponentQuery.query('#btnGua')[0].show();
                     }
                  }
              //  }else{
@@ -176,7 +177,7 @@ Ext.define('Query.view.main.Main', {
     console.log('hola');
     Ext.Ajax.request({
     url: 'http://grupobinario.sytes.net:8080/empresas',
-
+//Guardo las configuraciones de la empresa en el localStorage.
     success: function(response, opts) {
         var obj = Ext.decode(response.responseText);
         console.dir(obj);
@@ -201,10 +202,10 @@ Ext.define('Query.view.main.Main', {
             //html:'<h1 style= "background-color:#1b1d1f;">'+rec.data.texto+'</h1>'
             ,itemId:'card'+rec.data.idpanel
             ,defaults:{
-                  style:'background:transparent',
+                    style:'background:transparent',
                   //margin:'50 0',
-                  labelAlign: 'top',
-                  defaultPhonePickerConfig : {
+                    labelAlign: 'top',
+                    defaultPhonePickerConfig : {
                     doneButton : 'Aceptar',
                     cancelButton : 'Cancelar',
                     style:'background:'+localStorage.getItem('colorPrincipal')
