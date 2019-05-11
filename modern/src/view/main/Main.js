@@ -116,6 +116,7 @@ Ext.define('Query.view.main.Main', {
            }else{
              var numNext = parseInt(num) -1;
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
+             Ext.ComponentQuery.query('#btnGua')[0].hide();
            }
         }
       }
