@@ -166,7 +166,17 @@ Ext.define('Query.view.main.Main', {
       style:"background-color:"+ localStorage.getItem('colorPrincipal') + "border: none;color: #FFF;padding-left: 5px;",
       handler: function(btn,e){
         //alert('submit del formulario');
-        //Ext.ComponentQuery.query('#formini')[0].submit({ url: 'PostMyData/To', method: 'Post', jsonSubmit: true success: function() { Ext.Msg.alert("success"); }, failure: function() { Ext.Msg.alert("error"); } });
+        Ext.ComponentQuery.query('#formini')[0].submit({
+          url: 'http://grupobinario.sytes.net/resultados',
+          method: 'Post',
+          jsonSubmit: true,
+           success: function() {
+             Ext.Msg.alert("success");
+            }, 
+            failure: function() {
+               Ext.Msg.alert("Se produjo un error al guardar las respuestas");
+            }
+        });
       }
 
     }]
