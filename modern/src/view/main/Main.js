@@ -110,8 +110,9 @@ Ext.define('Query.view.main.Main', {
            Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
          }else{
            if(num == 1){
-             Ext.ComponentQuery.query('#btnAnt')[0].hide()
-            Ext.ComponentQuery.query('#btnSig')[0].show();
+              Ext.ComponentQuery.query('#btnAnt')[0].hide();
+              Ext.ComponentQuery.query('#btnGua')[0].hide();
+              Ext.ComponentQuery.query('#btnSig')[0].show();
            }else{
              var numNext = parseInt(num) -1;
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
@@ -172,9 +173,11 @@ Ext.define('Query.view.main.Main', {
           jsonSubmit: true,
            success: function() {
              Ext.Msg.alert("success");
-            }, 
+             Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card0');
+             Ext.ComponentQuery.query('#btnSig')[0].hide();
+            },
             failure: function() {
-               Ext.Msg.alert("Se produjo un error al guardar las respuestas");
+               Ext.Msg.alert("Atención","Se produjo un error al guardar las respuestas");
             }
         });
       }
