@@ -96,8 +96,8 @@ Ext.define('Query.view.main.Main', {
              var numNext = parseInt(num) +1;
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
            }else if(num>0) {
-             //model =Ext.create('Model',Ext.ComponentQuery.query('#'+cardActive)[0].getValues());
-            // errors = model.getValidation();
+             model =Ext.create('Model',Ext.ComponentQuery.query('#'+cardActive)[0].getValues());
+             errors = model.getValidation();
              // if(errors.isValid()){
                  Ext.ComponentQuery.query('#btnAnt')[0].show();
                   if(num == 9){
@@ -130,8 +130,8 @@ Ext.define('Query.view.main.Main', {
       handler: function(btn,e){
         //alert('submit del formulario');
         Ext.ComponentQuery.query('#formini')[0].submit({
-          url: 'http://grupobinario.sytes.net/resultados',
-          method: 'Post',
+          url: 'http://grupobinario.sytes.net:8080/resultados',
+          method: 'POST',
           jsonSubmit: true,
            success: function() {
              Ext.Msg.alert("success");
