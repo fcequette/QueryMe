@@ -46,49 +46,8 @@ Ext.define('Query.view.main.Main', {
        height:'100%',
        cls:'formPrincipal',
        bodyPadding: 10
-       // ,defaults:{
-       //   style:'background:transparent',
-       //   margin:'50 0',
-       //   defaultPhonePickerConfig : {
-       //     doneButton : 'Aceptar',
-       //     cancelButton : 'Cancelar',
-       //     style:'background-color:#565656'
-       //
-       //   }
-       // }
-      //,reference: 'panel'
        ,layout:'card'
-      /* ,items:[{
-          xtype:'panel'
-         ,itemId:'card0'
-         ,title: 'primero'
-         ,shadow: 'true'
-        ,html: '<h1>HOLA</h1>Gracias por ayudarnos a crecer...'
-        ,defaults:{
-          labelAlign: 'top'
-        }
-        ,items:[]*/
-      /*     ,items:[{
-             xtype:'selectfield'
-               ,label:'Pregunta 1 esta es una cosa muy larga que se yo hata inclusive mas larga'
-               ,itemId:'selectTorneo'
-               ,name:'torneo_id'
-               //,store:'Torneos'
-               ,displayField:'torneo_descri'
-               ,valueField:'torneo_id'
-               //,autoSelect: true
-                ,namecmb:'Categorias'
-           },{
-            xtype: 'textfield',
-            name: 'name',
-            label: 'Name',
-            placeholder: 'Tom Roy',
-            autoCapitalize: true,
-            required: true,
-            clearable: true
-        }]*/
-         //}]
-      // }]
+
   },{
     docked: 'bottom',
     xtype: 'toolbar',
@@ -240,21 +199,21 @@ Ext.define('Query.view.main.Main', {
                   switch (rec2.data.tipo) {
                     case 'selectfield':
                       Ext.ComponentQuery.query('#card'+rec.data.idpanel)[0].add({
-                      xtype:rec2.data.tipo
-                      ,emptyText: 'Elige una opción'
-                      ,autoSelect : false
-                      ,label:rec2.data.texto
-                      ,store:'store'+rec2.data.idpregunta
-                      ,displayField:'display'+rec2.data.idpregunta
-                      ,valueField:'value'+rec2.data.idpregunta
-                      ,alowBlank :false
-                      ,itemId: 'value'+rec2.data.idpregunta
-                      ,name: 'value'+rec2.data.idpregunta
-                      ,validators: {
-                          type: 'presence',
-                          message: 'Invalid salary'
-                      }
-                    });
+                            xtype:rec2.data.tipo
+                          ,emptyText: 'Elige una opción'
+                          ,autoSelect : false
+                          ,label:rec2.data.texto
+                          ,store:'store'+rec2.data.idpreguntas
+                          ,displayField:'display'+rec2.data.idpreguntas
+                          ,valueField:'value'+rec2.data.idpreguntas
+                          ,alowBlank :false
+                          ,itemId: 'value'+rec2.data.idpreguntas
+                          ,name: 'value'+rec2.data.idpreguntas
+                          ,validators: {
+                              type: 'presence',
+                              message: 'Invalid salary'
+                          }
+                      });
                       break;
                       case 'textfield':
                         Ext.ComponentQuery.query('#card'+rec.data.idpanel)[0].add({
