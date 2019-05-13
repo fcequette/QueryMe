@@ -42,6 +42,26 @@ Ext.Loader.loadScript({
 			}
 		});
 /*Ext.define('Query.store.store0', {
+  extend: 'Ext.data.Store',
+  alias: 'store.store0',
+  storeId:'store0',
+  fields: [ 'value0', 'display0' ],
+   autoLoad:false,
+   data: { items: [ { value0: 0, display0: 'SI'}]}
+   ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }})
+   ;Ext.create('Query.store.store0');
+   Ext.define('Query.store.store1', {
+     extend: 'Ext.data.Store',alias: 'store.store1',
+     storeId:'store1', fields: [ 'value1', 'display1' ],
+      autoLoad:false, data: { items: [ { value1: 0, display1: 'Funtional'}]}
+       ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }});
+       Ext.create('Query.store.store1');
+    Ext.define('Query.store.store0', {
+      extend: 'Ext.data.Store',
+      alias: 'store.store0',storeId:'store0',
+       fields: [ 'value0', 'display0' ],
+       autoLoad:false, data: { items: [ { value0: 0, display0: 'SI'}]} ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }});Ext.create('Query.store.store0');Ext.define('Query.store.store1', { extend: 'Ext.data.Store',alias: 'store.store1',storeId:'store1', fields: [ 'value1', 'display1' ], autoLoad:false, data: { items: [ { value1: 0, display1: 'Funtional'}]} ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }});Ext.create('Query.store.store1');
+*//*Ext.define('Query.store.store0', {
     extend: 'Ext.data.Store',
 
     alias: 'store.store0',
