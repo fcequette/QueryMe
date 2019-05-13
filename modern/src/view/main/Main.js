@@ -132,7 +132,7 @@ Ext.define('Query.view.main.Main', {
         Ext.ComponentQuery.query('#formini')[0].submit({
           url: 'http://grupobinario.sytes.net:8080/resultados',
           method: 'POST',
-          jsonData: true,
+          //jsonData: true,
            success: function() {
              Ext.Msg.alert("success");
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card0');
