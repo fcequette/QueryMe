@@ -129,10 +129,11 @@ Ext.define('Query.view.main.Main', {
       style:"background-color:"+ localStorage.getItem('colorPrincipal') + "border: none;color: #FFF;padding-left: 5px;",
       handler: function(btn,e){
         //alert('submit del formulario');
-        Ext.ComponentQuery.query('#formini')[0].submit({
+        //Ext.ComponentQuery.query('#formini')[0].submit({
+          Ext.Ajax.request({
           url: 'http://grupobinario.sytes.net:8080/resultados',
           method: 'POST',
-          //jsonData: true,
+          jsonData: Ext.ComponentQuery.query('#formini')[0].getValues(),
            success: function() {
              Ext.Msg.alert("success");
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card0');
