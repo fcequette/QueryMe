@@ -16,8 +16,8 @@ Ext.define('Query.view.main.List', {
     },
 
     columns: [
-        { text: 'Pregunta',  dataIndex: 'texto' },
-        { xtype:'actioncolumn', width:50,
+        { text: 'Pregunta',  dataIndex: 'texto',width:'90%' },
+        { xtype:'actioncolumn', width:'10%',
               items: [{
                 iconCls: 'x-fa fa-cog',
                 tooltip: 'Ver',
