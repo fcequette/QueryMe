@@ -135,7 +135,7 @@ Ext.define('Query.view.main.Main', {
           method: 'POST',
           jsonData: Ext.ComponentQuery.query('#formini')[0].getValues(),
            success: function() {
-             Ext.Msg.alert("success");
+             Ext.Msg.alert("Gracias!!!","Tus respuestas ya fueron registradas");
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card0');
              Ext.ComponentQuery.query('#btnSig')[0].hide();
             },
