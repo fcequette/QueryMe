@@ -3,20 +3,28 @@ Ext.define('Query.store.Personnel', {
 
     alias: 'store.personnel',
 
-    fields: [
-        'name', 'email', 'phone'
-    ],
+    extend: 'Ext.data.Store',
 
-    data: { items: [
-        { name: 'Jean Luc', email: "jeanluc.picard@enterprise.com", phone: "555-111-1111" },
-        { name: 'Worf',     email: "worf.moghsson@enterprise.com",  phone: "555-222-2222" },
-        { name: 'Deanna',   email: "deanna.troi@enterprise.com",    phone: "555-333-3333" },
-        { name: 'Data',     email: "mr.data@enterprise.com",        phone: "555-444-4444" }
-    ]},
+    // alias: 'store.preguntas',
+    storeId:'Preguntas',
+    fields: [
+        { name: 'idpanel', type: 'int' },
+        { name: 'idpregunta', type: 'int' },
+        { name: 'tipo', type: 'string' },
+        { name: 'texto', type: 'string' },
+        { name: 'empresa', type: 'string' },
+        { name: 'encuesta', type: 'string' }
+    ],
+    autoLoad:true,
 
     proxy: {
-        type: 'memory',
-        reader: {
+      type: 'ajax'
+      //,url: 'https://api.myjson.com/bins/154xmw'
+      // ,url:'https://api.myjson.com/bins/d67fg'
+      // ,url:'https://api.myjson.com/bins/1d1bre'
+      ,url:'http://grupobinario.sytes.net:8080/preguntas'
+      ,method: 'GET'
+        ,reader: {
             type: 'json',
             rootProperty: 'items'
         }

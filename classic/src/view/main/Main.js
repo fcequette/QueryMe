@@ -76,8 +76,8 @@ Ext.define('Query.view.main.Main', {
     },
 
     items: [{
-        title: 'Home',
-        iconCls: 'fa-home',
+        title: 'Preguntas',
+        iconCls: 'fa-question',
         // The following grid shares a store with the classic version's grid as well!
         items: [{
             xtype: 'mainlist'
@@ -85,18 +85,21 @@ Ext.define('Query.view.main.Main', {
     }, {
         title: 'Users',
         iconCls: 'fa-user',
+        hidden:true,
         bind: {
             html: '{loremIpsum}'
         }
     }, {
         title: 'Groups',
         iconCls: 'fa-users',
+        hidden:true,
         bind: {
             html: '{loremIpsum}'
         }
     }, {
         title: 'Settings',
         iconCls: 'fa-cog',
+        hidden:true,
         bind: {
             html: '{loremIpsum}'
         }

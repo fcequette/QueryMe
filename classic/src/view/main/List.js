@@ -9,19 +9,28 @@ Ext.define('Query.view.main.List', {
         'Query.store.Personnel'
     ],
 
-    title: 'Personnel',
+    title: 'Preguntas',
 
     store: {
         type: 'personnel'
     },
 
     columns: [
-        { text: 'Name',  dataIndex: 'name' },
-        { text: 'Email', dataIndex: 'email', flex: 1 },
-        { text: 'Phone', dataIndex: 'phone', flex: 1 }
+        { text: 'Pregunta',  dataIndex: 'texto' },
+        { xtype:'actioncolumn', width:50,
+              items: [{
+                iconCls: 'x-fa fa-cog',
+                tooltip: 'Ver',
+                handler: function(grid, rowIndex, colIndex) {
+                    var rec = grid.getStore().getAt(rowIndex);
+                    alert("Edit " + rec.get('firstname'));
+                }
+          }]
+        }
     ],
 
     listeners: {
         select: 'onItemSelected'
+
     }
 });
