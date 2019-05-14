@@ -137,7 +137,10 @@ Ext.define('Query.view.main.Main', {
            success: function() {
              Ext.Msg.alert("Gracias!!!","Tus respuestas ya fueron registradas");
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card0');
-             Ext.ComponentQuery.query('#btnSig')[0].hide();
+             Ext.ComponentQuery.query('#btnGua')[0].hide();
+             Ext.ComponentQuery.query('#btnAnt')[0].hide();
+             Ext.ComponentQuery.query('#btnSig')[0].show();
+             Ext.ComponentQuery.query('#formini')[0].reset();
             },
             failure: function() {
                Ext.Msg.alert("Atención","Se produjo un error al guardar las respuestas");
