@@ -15,7 +15,7 @@ defaults: {
     flex: 1
 },
 items:[{
-   title:'Preguntas'
+   title:'<p>Preguntas</p>'
   ,header:{
     style: "background-color:"+localStorage.getItem('colorPrincipal')
   }
@@ -97,6 +97,7 @@ items:[{
       text: 'respuestas'
       ,dataIndex:'data1'
       ,width: '100%'
+      ,align:'left'
     }]
     ,store: {
         type: 'mobile-os'

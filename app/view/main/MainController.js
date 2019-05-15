@@ -43,8 +43,24 @@ Ext.define('Query.view.main.MainController', {
       });
 
     },
+    onPreview: function () {
+       if (Ext.isIE8) {
+           Ext.Msg.alert('Unsupported Operation', 'This operation requires a newer version of Internet Explorer.');
+           return;
+       }
+       var chart = this.lookup('chart');
+       chart.preview();
+   },
 
-    onConfirm: function (choice) {
+   onDataRender: function (v) {
+       return v + '%';
+   },
+
+   onSeriesTooltipRender: function (tooltip, record, item) {
+       tooltip.setHtml(record.get('os') + ': ' + record.get('data1') + '%');
+   }
+
+    ,onConfirm: function (choice) {
         if (choice === 'yes') {
             //
         }
