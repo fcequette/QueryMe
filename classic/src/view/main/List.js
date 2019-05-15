@@ -35,7 +35,7 @@ items:[{
                   //alert("Edit " + rec.get('firstname'));
                   console.log('llegaaaa',rec.get('idpregunta'));
                   Ext.Ajax.request({
-                    url: 'http://grupobinario.sytes.net:8080/resultados?idpregunta='+ rec.get('idpregunta'),
+                    url: 'http://grupobinario.sytes.net:8080/resultados?idpregunta='+ rec.get('idpreguntas'),
                     method:'GET',
                     success: function(response){
 
