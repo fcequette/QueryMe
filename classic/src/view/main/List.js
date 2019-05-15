@@ -38,12 +38,14 @@ items:[{
                     url: 'http://grupobinario.sytes.net:8080/resultados?idpregunta='+ rec.get('idpregunta'),
                     method:'GET',
                     success: function(response){
+
+                      console.log(response.responseText);
                       /*Ext.ComponentQuery.query('#flo')[0].getStore().loadData(        [{ os: 'Android', data1: 68.3 },
                         { os: 'BlackBerry', data1: 1.7 },
                         { os: 'iOS', data1: 17.9 },
                         { os: 'Windows Phone', data1: 10.2 },
                         { os: 'Others', data1: 1.9 }])*/
-                         var result ='';
+                         var result =response.responseText.data;
                         Ext.ComponentQuery.query('#flo')[0].getStore().loadData(result);
 
                     }
