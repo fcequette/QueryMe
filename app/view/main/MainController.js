@@ -26,6 +26,13 @@ Ext.define('Query.view.main.MainController', {
              console.log(result.data);
             Ext.ComponentQuery.query('#grafico')[0].setTitle('Respuestas: '+rec.get('texto'));
             Ext.ComponentQuery.query('#grafico')[0].getStore().loadData(result.data);
+            if(result.type == 'abierta'){
+              Ext.cq1('#panelAbierto').show();
+              Ext.cq1('#panelCerrado').hide();
+            }else{
+              Ext.cq1('#panelAbierto').hide();
+              Ext.cq1('#panelCerrado').show();
+            }
 
         }
         ,failure: function(){
