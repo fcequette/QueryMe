@@ -24,12 +24,14 @@ Ext.define('Query.view.main.MainController', {
             { os: 'Others', data1: 1.9 }])*/
              var result =JSON.parse(response.responseText);
              console.log(result.data);
-            Ext.ComponentQuery.query('#grafico')[0].setTitle('Respuestas: '+rec.get('texto'));
-            Ext.ComponentQuery.query('#grafico')[0].getStore().loadData(result.data);
             if(result.type == 'abierta'){
               Ext.ComponentQuery.query('#panelAbierto')[0].show();
               Ext.ComponentQuery.query('#panelCerrado')[0].hide();
+              Ext.ComponentQuery.query('#panelAbierto')[0].setTitle('Respuestas: '+rec.get('texto'));
+              Ext.ComponentQuery.query('#panelAbierto')[0].getStore().loadData(result.data);
             }else{
+              Ext.ComponentQuery.query('#grafico')[0].setTitle('Respuestas: '+rec.get('texto'));
+              Ext.ComponentQuery.query('#grafico')[0].getStore().loadData(result.data);
               Ext.ComponentQuery.query('#panelAbierto')[0].hide();
               Ext.ComponentQuery.query('#panelCerrado')[0].show();
             }
