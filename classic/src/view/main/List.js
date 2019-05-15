@@ -34,67 +34,73 @@ items:[{
   }
 
 },{
-xtype: 'polar',
-itemId:'panelCerrado',
-hidden:true,
-title: 'Seleccionar una pregunta ...',
-header:{
-  style: "background-color:"+localStorage.getItem('colorPrincipal')
-},
-reference: 'chart',
-itemId:'grafico',
-captions: {
-    title: 'Pie Charts - Basic',
-    credits: {
-        text: 'Data: IDC Predictions - 2017\n' +
-            'Source: Internet',
-        align: 'left'
-    }
-},
-//theme: 'default-gradients',
-width: '100%',
-height: 500,
-insetPadding: 40,
-innerPadding: 20,
-store: {
-    type: 'mobile-os'
-},
-legend: {
-    docked: 'bottom'
-},
-interactions: ['rotate'],
-series: [{
-    type: 'pie',
-    angleField: 'data1',
-    label: {
-        field: 'os',
-        calloutLine: {
-            length: 60,
-            width: 3
-            // specifying 'color' is also possible here
-        }
-    },
-    highlight: true,
-    tooltip: {
-        trackMouse: true,
-        renderer: 'onSeriesTooltipRender'
-    }
-}]
-
-},{
-   xtype:'gridpanel'
-  ,itemId:'panelAbierto'
-  ,hidden:true
-  ,height: 1500
-  ,columns:[{
-    text: 'respuestas'
-    ,dataIndex:'data1'
-    ,width: '100%'
-  }]
-  ,store: {
+  xtype:'panel'
+  ,items:[{
+  xtype:'panel'
+  ,itemId:'panelCerrado'
+  ,items:[{
+    xtype: 'polar',
+  hidden:true,
+  title: 'Seleccionar una pregunta ...',
+  header:{
+    style: "background-color:"+localStorage.getItem('colorPrincipal')
+  },
+  reference: 'chart',
+  itemId:'grafico',
+  captions: {
+      title: 'Pie Charts - Basic',
+      credits: {
+          text: 'Data: IDC Predictions - 2017\n' +
+              'Source: Internet',
+          align: 'left'
+      }
+  },
+  //theme: 'default-gradients',
+  width: '100%',
+  height: 500,
+  insetPadding: 40,
+  innerPadding: 20,
+  store: {
       type: 'mobile-os'
-  }
-}]
+  },
+  legend: {
+      docked: 'bottom'
+  },
+  interactions: ['rotate'],
+  series: [{
+      type: 'pie',
+      angleField: 'data1',
+      label: {
+          field: 'os',
+          calloutLine: {
+              length: 60,
+              width: 3
+              // specifying 'color' is also possible here
+          }
+      },
+      highlight: true,
+      tooltip: {
+          trackMouse: true,
+          renderer: 'onSeriesTooltipRender'
+          }
+  }]
+      }]
+  },{
+     xtype:'gridpanel'
+    ,itemId:'panelAbierto'
+    ,hidden:true
+    ,height: 1500
+    ,columns:[{
+      text: 'respuestas'
+      ,dataIndex:'data1'
+      ,width: '100%'
+    }]
+    ,store: {
+        type: 'mobile-os'
+    }
+  }]
+}
+]
 
 
 
