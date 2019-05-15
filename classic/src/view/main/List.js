@@ -26,7 +26,7 @@ items:[{
       type: 'personnel'
   },
 
-  columns: [  { text: 'Pregunta',  dataIndex: 'texto',width:'100%' }],
+  columns: [  { text: 'Pregunta',  dataIndex: 'texto',width:'100%',align:'center' }],
 
   listeners: {
       select: 'onItemSelected'
@@ -88,6 +88,9 @@ items:[{
   },{
      xtype:'gridpanel'
     ,itemId:'panelAbierto'
+    ,header:{
+      style: "background-color:"+localStorage.getItem('colorPrincipal')
+    }
     ,hidden:true
     ,height: 1500
     ,columns:[{
