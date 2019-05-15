@@ -45,7 +45,7 @@ items:[{
                         { os: 'iOS', data1: 17.9 },
                         { os: 'Windows Phone', data1: 10.2 },
                         { os: 'Others', data1: 1.9 }])*/
-                         var result =response.responseText.data;
+                         var result =response.responseText;
                         Ext.ComponentQuery.query('#flo')[0].getStore().loadData(result);
 
                     }
