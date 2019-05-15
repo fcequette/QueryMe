@@ -40,7 +40,7 @@ items:[{
   ,itemId:'panelCerrado'
   ,items:[{
     xtype: 'polar',
-  hidden:true,
+  //hidden:true,
   title: 'Seleccionar una pregunta ...',
   header:{
     style: "background-color:"+localStorage.getItem('colorPrincipal')
