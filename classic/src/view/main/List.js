@@ -36,6 +36,7 @@ items:[{
 },{
 xtype: 'polar',
 itemId:'panelCerrado',
+hidden:true,
 title: 'Seleccionar una pregunta ...',
 header:{
   style: "background-color:"+localStorage.getItem('colorPrincipal')
@@ -83,6 +84,7 @@ series: [{
 },{
    xtype:'gridpanel'
   ,itemId:'panelAbierto'
+  ,hidden:true
   ,height: 1500
   ,columns:[{
     text: 'respuestas'
