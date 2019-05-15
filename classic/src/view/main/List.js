@@ -16,6 +16,9 @@ defaults: {
 },
 items:[{
    title:'Preguntas'
+  ,header:{
+    style: "background-color:"+localStorage.getItem('colorPrincipal')
+  }
   ,xtype:'gridpanel'
   ,height: 1500
   //,region: 'center'
@@ -23,42 +26,7 @@ items:[{
       type: 'personnel'
   },
 
-  columns: [
-      { text: 'Pregunta',  dataIndex: 'texto',width:'90%' },
-      { xtype:'actioncolumn', width:'10%',
-            items: [{
-              iconCls: 'x-fa fa-cog',
-              //text: 'Resultados',
-              tooltip: 'Ver ',
-              handler: function(grid, rowIndex, colIndex) {
-                  var rec = grid.getStore().getAt(rowIndex);
-                  //alert("Edit " + rec.get('firstname'));
-                  console.log('llegaaaa',rec.get('idpregunta'));
-                  Ext.Ajax.request({
-                    url: 'http://grupobinario.sytes.net:8080/resultados?idpregunta='+ rec.get('idpreguntas'),
-                    method:'GET',
-                    success: function(response){
-
-                      console.log(response.responseText);
-                      /*Ext.ComponentQuery.query('#flo')[0].getStore().loadData(        [{ os: 'Android', data1: 68.3 },
-                        { os: 'BlackBerry', data1: 1.7 },
-                        { os: 'iOS', data1: 17.9 },
-                        { os: 'Windows Phone', data1: 10.2 },
-                        { os: 'Others', data1: 1.9 }])*/
-                         var result =JSON.parse(response.responseText);
-                         console.log(result.data);
-                        Ext.ComponentQuery.query('#flo')[0].getStore().loadData(result.data);
-
-                    }
-                    ,failure: function(){
-                      console.log('salio por failure');
-                    }
-                  });
-
-              }
-        }]
-      }
-  ],
+  columns: [  { text: 'Pregunta',  dataIndex: 'texto',width:'100%' }],
 
   listeners: {
       select: 'onItemSelected'
@@ -67,9 +35,12 @@ items:[{
 
 },{
 xtype: 'polar',
-title: 'Resultados',
+title: 'Seleccionar una pregunta ...',
+header:{
+  style: "background-color:"+localStorage.getItem('colorPrincipal')
+},
 reference: 'chart',
-itemId:'flo',
+itemId:'grafico',
 captions: {
     title: 'Pie Charts - Basic',
     credits: {
@@ -116,8 +87,5 @@ series: [{
 Ext.define('KitchenSink.store.MobileOS', {
     extend: 'Ext.data.Store',
     alias: 'store.mobile-os',
-    itemId:'storeFlo',
-
     fields: ['os', 'data1' ],
-
 });

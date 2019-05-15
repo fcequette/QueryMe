@@ -38,6 +38,8 @@ Ext.define('Query.view.main.Main', {
             flex: 0
         },
         iconCls: 'fa-th-list'
+        ,style: "background-color:"+localStorage.getItem('colorPrincipal')
+
     },
 
     tabBar: {
@@ -78,6 +80,9 @@ Ext.define('Query.view.main.Main', {
     items: [{
         title: 'Preguntas',
         iconCls: 'fa-question',
+        header:{
+          style: "background-color:"+localStorage.getItem('colorPrincipal')
+        },
         // The following grid shares a store with the classic version's grid as well!
         items: [{
             xtype: 'mainlist'

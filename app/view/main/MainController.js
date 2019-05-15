@@ -9,8 +9,30 @@ Ext.define('Query.view.main.MainController', {
 
     alias: 'controller.main',
 
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    onItemSelected: function (sender, rec) {
+      console.log('llegaaaa',rec.get('idpregunta'));
+      Ext.Ajax.request({
+        url: 'http://grupobinario.sytes.net:8080/resultados?idpregunta='+ rec.get('idpreguntas'),
+        method:'GET',
+        success: function(response){
+
+          console.log(response.responseText);
+          /*Ext.ComponentQuery.query('#grafico')[0].getStore().loadData(        [{ os: 'Android', data1: 68.3 },
+            { os: 'BlackBerry', data1: 1.7 },
+            { os: 'iOS', data1: 17.9 },
+            { os: 'Windows Phone', data1: 10.2 },
+            { os: 'Others', data1: 1.9 }])*/
+             var result =JSON.parse(response.responseText);
+             console.log(result.data);
+            Ext.ComponentQuery.query('#grafico')[0].setTitle('Respuestas: '+rec.get('texto'));
+            Ext.ComponentQuery.query('#grafico')[0].getStore().loadData(result.data);
+
+        }
+        ,failure: function(){
+          console.log('salio por failure');
+        }
+      });
+
     },
 
     onConfirm: function (choice) {
