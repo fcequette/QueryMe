@@ -99,7 +99,7 @@ Ext.define('Query.view.main.Main', {
              model =Ext.create('Model',Ext.ComponentQuery.query('#'+cardActive)[0].getValues());
              errors = model.getValidation();
              console.log('veeeeeeeeeeeeeeeeeerrr', errors.isValid());
-              if(errors.isValid()){
+              if( errors.isValid()||Ext.isEmpty(Ext.ComponentQuery.query('#'+cardActive)[0].items.items)){
                  Ext.ComponentQuery.query('#btnAnt')[0].show();
                   if(num == 9){
                     btn.hide();
