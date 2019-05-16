@@ -128,9 +128,7 @@ Ext.define('Model', {
     ]
       ,validators: [
           {type: 'presence', field: 'value0', message: 'Something wrong'},
-          {type: 'presence', field: 'value1', message: 'Something wrong in title'},
-          {type: 'presence', field: 'value2', message: 'Something wrong'},
-          {type: 'presence', field: 'value3', message: 'Something wrong in title'}
+        
       ]
 
 });
