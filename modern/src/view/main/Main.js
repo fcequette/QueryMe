@@ -227,6 +227,10 @@ Ext.define('Query.view.main.Main', {
                           ,alowBlank :false
                           ,name: 'value'+rec2.data.idpregunta
                           ,itemId: 'value'+rec2.data.idpregunta
+                          ,validators: {
+                              type: 'presence',
+                              message: 'Invalid salary'
+                          }
                         });
 
                         break;
