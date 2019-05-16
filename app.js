@@ -41,6 +41,16 @@ Ext.Loader.loadScript({
 				console.error('Error al agregar opciones');
 			}
 		});
+
+  /*  Ext.define('Model', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'id',  type: 'string'},
+            {name: 'value',   type: 'int', convert: null}
+        ],
+
+
+    });*/
 /*Ext.define('Query.store.store0', {
   extend: 'Ext.data.Store',
   alias: 'store.store0',
@@ -48,43 +58,11 @@ Ext.Loader.loadScript({
   fields: [ 'value0', 'display0' ],
    autoLoad:false,
    data: { items: [ { value0: 0, display0: 'SI'}]}
-   ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }})
-   ;Ext.create('Query.store.store0');
-   Ext.define('Query.store.store1', {
-     extend: 'Ext.data.Store',alias: 'store.store1',
-     storeId:'store1', fields: [ 'value1', 'display1' ],
-      autoLoad:false, data: { items: [ { value1: 0, display1: 'Funtional'}]}
-       ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }});
-       Ext.create('Query.store.store1');
-    Ext.define('Query.store.store0', {
-      extend: 'Ext.data.Store',
-      alias: 'store.store0',storeId:'store0',
-       fields: [ 'value0', 'display0' ],
-       autoLoad:false, data: { items: [ { value0: 0, display0: 'SI'}]} ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }});Ext.create('Query.store.store0');Ext.define('Query.store.store1', { extend: 'Ext.data.Store',alias: 'store.store1',storeId:'store1', fields: [ 'value1', 'display1' ], autoLoad:false, data: { items: [ { value1: 0, display1: 'Funtional'}]} ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' } }});Ext.create('Query.store.store1');
-*//*Ext.define('Query.store.store0', {
-    extend: 'Ext.data.Store',
-
-    alias: 'store.store0',
-    storeId:'store0',
-    fields: [
-        'value0', 'display0'
-    ],
-    autoLoad:false,
-
-    data: { items: [
-        { value0: 'si', display0: 'SI'},
-        { value0: 'no', display0: 'NO'}
-
-    ]},
-
-    proxy: {
-        type: 'memory',
-        reader: {
-            type: 'json',
-            rootProperty: 'items'
-        }
-    }
+   ,proxy: { type: 'memory', reader: { type: 'json', rootProperty: 'items' }
+ }
 });
+
+
 Ext.create('Query.store.store0');
 Ext.define('Query.store.store1', {
     extend: 'Ext.data.Store',
@@ -138,7 +116,7 @@ Ext.define('Query.store.store2', {
         }
     }
 });
-Ext.create('Query.store.store2');
+Ext.create('Query.store.store2');*/
 Ext.define('Model', {
     extend: 'Ext.data.Model',
     fields: [
@@ -155,4 +133,4 @@ Ext.define('Model', {
           {type: 'presence', field: 'value3', message: 'Something wrong in title'}
       ]
 
-});*/
+});
