@@ -98,7 +98,7 @@ Ext.define('Query.view.main.Main', {
            }else if(num>0) {
              model =Ext.create('Model',Ext.ComponentQuery.query('#'+cardActive)[0].getValues());
              errors = model.getValidation();
-             console.log('veeeeeeeeeeeeeeeeeerrr' errors);
+             console.log('veeeeeeeeeeeeeeeeeerrr', errors);
              // if(errors.isValid()){
                  Ext.ComponentQuery.query('#btnAnt')[0].show();
                   if(num == 9){
