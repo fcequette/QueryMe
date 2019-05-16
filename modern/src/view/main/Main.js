@@ -99,7 +99,7 @@ Ext.define('Query.view.main.Main', {
              model =Ext.create('Model',Ext.ComponentQuery.query('#'+cardActive)[0].getValues());
              errors = model.getValidation();
              console.log('veeeeeeeeeeeeeeeeeerrr', errors);
-             // if(errors.isValid()){
+              if(errors.isValid()){
                  Ext.ComponentQuery.query('#btnAnt')[0].show();
                   if(num == 9){
                     btn.hide();
@@ -115,10 +115,10 @@ Ext.define('Query.view.main.Main', {
                        Ext.ComponentQuery.query('#btnGua')[0].show();
                     }
                  }
-             //  }else{
-             //    Ext.Msg.alert('Atención', 'Debe completar todos los campos de la encuesta.', Ext.emptyFn);
-             //
-             // }
+              }else{
+                Ext.Msg.alert('Atención', 'Debe completar todos los campos de la encuesta.', Ext.emptyFn);
+
+             }
           }
            console.log('num',num);
          }
