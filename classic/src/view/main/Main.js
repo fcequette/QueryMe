@@ -15,7 +15,8 @@ Ext.define('Query.view.main.Main', {
 
         'Query.view.main.MainController',
         'Query.view.main.MainModel',
-        'Query.view.main.List'
+        'Query.view.main.List',
+        'Query.view.main.Carga'
     ],
 
     controller: 'main',
@@ -78,7 +79,17 @@ Ext.define('Query.view.main.Main', {
     },
 
     items: [{
-        title: 'Preguntas',
+      title: 'Carga de preguntas'
+      ,header:{
+        style: "background-color:"+localStorage.getItem('colorPrincipal')
+      },
+      // The following grid shares a store with the classic version's grid as well!
+      items: [{
+          xtype: 'maincarga'
+      }]
+
+    },{
+        title: 'Resultados',
         iconCls: 'fa-question',
         header:{
           style: "background-color:"+localStorage.getItem('colorPrincipal')
@@ -109,4 +120,7 @@ Ext.define('Query.view.main.Main', {
             html: '{loremIpsum}'
         }
     }]
+    ,listeners:{
+      afterRender:'afterRender'
+    }
 });
