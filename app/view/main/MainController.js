@@ -188,7 +188,7 @@ Ext.define('Query.view.main.MainController', {
                                 localStorage.setItem('EPW-DateExpiration',dateExpiration); // guardo en localStorage
                                 // busco los datos del usuario
                                 //Cierro la ventana de login
-                                Ext.cq1('#winLogin').close();
+                                Ext.ComponentQuery.query('#winLogin')[0].close();
                               } else {
                                 Ext.Msg.alert('ERROR', 'Usuario o Contraseña incorrectos', function() {
                                   //me.view.down('#loginCard textfield[inputType="password"]').focus(true, 100);

@@ -42,9 +42,7 @@ items:[{
                   return '<p style="font-size:10px!default;color:black!important">'+a+'</p>';
                 //  console.log('lLllLlL',a,b);
               }
-             },
-
-            ],
+             }],
 
   listeners: {
       select: function(a,b){
@@ -71,19 +69,30 @@ items:[{
   ,store:'Preguntas'
   ,columns: [  { text: 'Título',  dataIndex: 'texto',width:'80%',align:'center' },
                 { text: 'Eliminar',  xtype: 'actioncolumn',width:'80%',align:'center' }
-            ],
+            ]
+  ,listeners: {
+      select: function(a,b){
+        console.log('que onda',a,b);
+        Ext.ComponentQuery.query('#gridPregunta')[0].setTitle(b.data.texto);
+        Ext.getStore('Preguntas').load({params:{idpanel:b.data.idpanel}});
+      }
+
+  }
 
   },{
      xtype:'gridpanel'
     ,title: '<p>Opciones</p>'
+    ,itemId:'gridOpciones'
     //,hidden: true
     //,store:'StoreO'
     ,height:700
     ,header:{
       style: "background-color:"+localStorage.getItem('colorPrincipal')
     }
-}
-]
+    ,columns: [  { text: 'valor',  dataIndex: 'texto',width:'80%',align:'center' },
+                  { text: 'Eliminar',  xtype: 'actioncolumn',width:'80%',align:'center' }
+              ]
+}]
 
 
 
