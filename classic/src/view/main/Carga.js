@@ -73,8 +73,8 @@ items:[{
   ,listeners: {
       select: function(a,b){
         console.log('que onda',a,b);
-        Ext.ComponentQuery.query('#gridPregunta')[0].setTitle(b.data.texto);
-        Ext.getStore('Preguntas').load({params:{idpanel:b.data.idpanel}});
+        Ext.ComponentQuery.query('#gridOpciones')[0].setTitle(b.data.texto);
+        Ext.getStore('Opciones').load({params:{idpregunta:b.data.idpregunta}});
       }
 
   }
