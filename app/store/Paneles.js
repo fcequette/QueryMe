@@ -9,7 +9,7 @@ Ext.define('Query.store.Paneles', {
         { name: 'empresa', type: 'string' },
         { name: 'encuesta', type: 'string' }
     ],
-autoLoad:true,
+   autoLoad:true,
 
     proxy: {
       type: 'ajax'

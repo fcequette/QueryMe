@@ -163,7 +163,7 @@ Ext.define('Query.view.main.MainController', {
                          jsonData.username = jsonData.username.toLowerCase();
                          var myJson = jsonData;
                           Ext.Ajax.request({
-                             url: '/api/oauth'
+                             url: 'http://grupobinario.sytes.net:8080/oauth'
                             ,method: 'POST'
                             ,headers: {
                               'Content-Type' : 'application/json'

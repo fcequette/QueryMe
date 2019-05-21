@@ -24,7 +24,30 @@ items:[{
   ,tools:[{
     text:'cargar'
     ,handler: function(){
-      alert('hola');
+      Ext.create('Ext.window.Window', {
+            //  height: '50%',
+              width:  500,
+              title: 'Cargar',
+              modal: true,
+              items:[{
+                xtype: 'form',
+                bodyPadding:20,
+ 			   dockedItems:[{
+                  dock:'bottom',
+                  xtype:'toolbar',
+                  items:['->',{
+                    text: 'Guardar'
+                  }]
+                }]
+                ,items:[{
+                  fieldLabel:'Titulo del panel',
+                  xtype: 'textarea',
+                  width:  400,
+
+                }]
+
+              }]
+           }).show();
     }
   }]
   ,xtype:'gridpanel'
