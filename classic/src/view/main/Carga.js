@@ -37,11 +37,29 @@ items:[{
                   xtype:'toolbar',
                   items:['->',{
                     text: 'Guardar'
+                    ,listeners:{
+                      click: function(btn,e) {
+                        btn.up('form').submit({
+                        url: 'http://grupobinario.sytes.net/paneles'
+                        ,jsonSubmit:true
+                        ,success: function(){
+                          btn.up('form').up('window').close()
+                          Ext.getStore('Paneles').reload();
+
+                        }
+                        ,failure: function(){
+
+                        }
+                      });
+                      }
+                    }
                   }]
                 }]
                 ,items:[{
                   fieldLabel:'Titulo del panel',
                   xtype: 'textarea',
+                  itemId: 'txtPanel',
+                  name: 'texto',
                   width:  400,
 
                 }]
@@ -71,6 +89,7 @@ items:[{
       select: function(a,b){
         console.log('que onda',a,b);
         Ext.ComponentQuery.query('#gridPregunta')[0].setTitle(b.data.texto);
+        Ext.ComponentQuery.query('#gridPregunta')[0].setConfig('idpanel',b.data.idpanel);
         Ext.getStore('Preguntas').load({params:{idpanel:b.data.idpanel}});
       }
 
@@ -80,7 +99,8 @@ items:[{
   xtype:'gridpanel',
   itemId:'gridPregunta',
   title: '<p>Preguntas</p>',
-  region: 'center'
+  region: 'center',
+  idpanel:''
   ,header:{
     style: "background-color:"+localStorage.getItem('colorPrincipal')
   }
@@ -89,6 +109,76 @@ items:[{
   ,viewConfig:{
     emptyText: 'Seleccione un panel'
   }
+  ,tools:[{
+    text:'cargar'
+    ,handler: function(){
+      Ext.create('Ext.window.Window', {
+            //  height: '50%',
+              width:  500,
+              title: 'Cargar',
+              modal: true,
+              items:[{
+                xtype: 'form',
+                bodyPadding:20,
+         dockedItems:[{
+                  dock:'bottom',
+                  xtype:'toolbar',
+                  items:['->',{
+                    text: 'Guardar'
+                    ,listeners:{
+                      click: function(btn,e) {
+                        btn.up('form').submit({
+                        url: 'http://grupobinario.sytes.net/preguntas'
+                        ,jsonSubmit:true
+                        ,success: function(){
+                          btn.up('form').up('window').close()
+                          Ext.getStore('Preguntas').reload();
+
+                        }
+                        ,failure: function(){
+
+                        }
+                      });
+                      }
+                    }
+                  }]
+                }]
+                ,items:[{
+                  fieldLabel:'idpanel',
+                  xtype: 'textfield',
+                  itemId: 'txtPanel',
+                  name: 'idpanel',
+                  width:  400,
+                  //value: this.config.idpanel
+
+                },{
+                  fieldLabel:'Pregunta',
+                  xtype: 'textarea',
+                  itemId: 'txtPanel',
+                  name: 'texto',
+                  width:  400,
+
+                },{
+                  fieldLabel:'Tipo',
+                  xtype: 'combobox',
+                  itemId: 'tipoPreg',
+                  name: 'tipo',
+                  width:  400,
+                  displayField:'tipo',
+                  store:[ {
+                    'tipo':'selectfield',
+
+                  },{
+                    'tipo':'textfield',
+
+                  }]
+
+                }]
+
+              }]
+           }).show();
+    }
+  }]
   ,store:'Preguntas'
   ,columns: [  { text: 'Título',  dataIndex: 'texto',width:'80%',align:'center' },
                 { text: 'Eliminar',  xtype: 'actioncolumn',width:'80%',align:'center' }
@@ -97,7 +187,16 @@ items:[{
       select: function(a,b){
         console.log('que onda',a,b);
         Ext.ComponentQuery.query('#gridOpciones')[0].setTitle(b.data.texto);
-        Ext.getStore('Opciones').load({params:{idpregunta:b.data.idpregunta}});
+        Ext.getStore('Opciones').load({
+          params:{idpregunta:b.data.idpregunta}
+          ,success: function(){
+
+          }
+          ,failure:function(){
+
+          }
+
+        });
       }
 
   }
