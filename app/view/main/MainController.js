@@ -12,7 +12,7 @@ Ext.define('Query.view.main.MainController', {
     onItemSelected: function (sender, rec) {
       console.log('llegaaaa',rec.get('idpregunta'));
       Ext.Ajax.request({
-        url: 'http://grupobinario.sytes.net:8080/resultados?idpregunta='+ rec.get('idpreguntas'),
+        url: 'http://grupobinario.sytes.net:8080/resultados/'+ rec.get('idpreguntas'),
         method:'GET',
         success: function(response){
 
