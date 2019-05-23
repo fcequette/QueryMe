@@ -94,6 +94,7 @@ Ext.define('Query.view.main.MainController', {
                    ,padding:'200 0 0 100'
                    ,items:[{
                         emptyText: 'Usuario'
+                        ,xtype:'textfield'
                         ,itemId:'txtUsu'
                         ,name:'username'
                         ,enableKeyEvents: true
@@ -107,6 +108,7 @@ Ext.define('Query.view.main.MainController', {
                         }
                       },{
           							 name: 'password'
+                         ,xtype:'textfield'
           							,inputType: 'password'
                         ,fieldLabel: '<strong style= "padding:18px;background:black;font-weight:bold;font-size:20px;color:white">CLAVE</strong>'
                         //,hidden:true
