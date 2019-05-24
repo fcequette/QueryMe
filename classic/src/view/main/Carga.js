@@ -47,8 +47,7 @@ items:[{
                     Ext.create('WindowPanel').show();
                     Ext.create('WindowPanel').setTitle('Actualizar');
                     Ext.ComponentQuery.query('#updatePanel')[0].setValue(true);
-                    Ext.ComponentQuery.query('#txtPanel')[0].setValue(Ext.ComponentQuery.query('#gridPregunta')[0].getConfig().idpanel);
-                    Ext.ComponentQuery.query('#txtPregunta')[0].setValue(rec.get('texto'));
+                    Ext.ComponentQuery.query('#txtPanel')[0].setValue(rec.get('texto'));
                     Ext.ComponentQuery.query('#btnPanel')[0].setText('Actualizar');
                 }
               },
@@ -90,6 +89,7 @@ items:[{
         Ext.create('WindowPregunta').show();
         Ext.create('WindowPregunta').setTitle('Cargar');
         Ext.ComponentQuery.query('#updatePregunta')[0].setValue(false);
+        Ext.ComponentQuery.query('#txtPanel')[0].setValue(Ext.ComponentQuery.query('#gridPregunta')[0].getConfig().idpanel);
         // Ext.ComponentQuery.query('#txtPregunta')[0].setValue(rec.get('texto'));
         Ext.ComponentQuery.query('#btnPregunta')[0].setText('Cargar');
     }
@@ -102,6 +102,7 @@ items:[{
                    var rec = grid.getStore().getAt(rowIndex);
                    Ext.create('WindowPregunta').show();
                    Ext.create('WindowPregunta').setTitle('Actualizar');
+                   Ext.ComponentQuery.query('#txtPanel')[0].setValue(Ext.ComponentQuery.query('#gridPregunta')[0].getConfig().idpanel);
                    Ext.ComponentQuery.query('#updatePregunta')[0].setValue(true);
                    Ext.ComponentQuery.query('#txtPregunta')[0].setValue(rec.get('texto'));
                    Ext.ComponentQuery.query('#btnPregunta')[0].setText('Actualizar');
