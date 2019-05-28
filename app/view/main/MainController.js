@@ -213,6 +213,7 @@ Ext.define('Query.view.main.MainController', {
                      Ext.ComponentQuery.query('#txtUsu')[0].focus(false,100);
                    }
                  }
-          }).show();
+          });
+          Ext.ComponentQuery.query('#winLogin')[0].show();
     }
 });

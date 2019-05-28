@@ -15,7 +15,7 @@ defaults: {
     flex: 1
 },
 items:[{
-   title:'<p>Preguntas</p>'
+   title:'Preguntas'
   ,header:{
     style: "background-color:"+localStorage.getItem('colorPrincipal')
   }

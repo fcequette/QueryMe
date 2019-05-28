@@ -20,7 +20,7 @@ autoLoad:true,
       //,url: 'https://api.myjson.com/bins/154xmw'
       // ,url:'https://api.myjson.com/bins/d67fg'
       // ,url:'https://api.myjson.com/bins/1d1bre'
-      ,url:'http://grupobinario.sytes.net:8080/preguntas'
+      ,url:'http://grupobinario.sytes.net/apiQM/preguntas'
       ,method: 'GET'
         ,reader: {
             type: 'json',

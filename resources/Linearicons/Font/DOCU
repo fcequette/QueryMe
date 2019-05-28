@@ -1,0 +1,43 @@
+linea 7
+/**
+	 * Metodo que se ejecuta cuando el boton menu contextual ubicado en el lado izquierdo del toolbar superior es clickeado, se encarga de abrir el menu contextual.
+	 * @cfg {Ext.button.Button} handler.button This button.
+	 * @cfg {Ext.event.Event} handler.e The click event.
+	 */
+16
+/**
+	 * Metodo que se ejecuta cuando el boton de favoritos ubicado en el lado derechi del toolbar superior es clickeado, muestra una lista de los modulos favoritos
+	 * guardados por el usuario
+	 * @event itemdblclick
+	 * @inheritdoc Ext.view.View#itemdblclick
+	 */
+66
+/**
+	 * Metodo que cierra la sesion de usuario poniendo al localStorage en false
+	 * @param {Ext.button.Button} this
+	 * @param {Event} e The event object
+	 */
+75
+/**
+	 * Metodo que se ejecuta al cargarse la aplicacion para mostrar la fecha y hora actual en el lateral superior derecho. Este metedo es llamado recursivamente
+	 * por un metodo denominado setInterval
+	 */
+92
+	/**
+	 * Metodo que se ejecuta cuando el combo de busqueda obtiene el foco
+	 * @param {Ext.Component} this
+	 * @param {Ext.event.Event} event The focus event.
+	 */
+100
+	/**
+	 * Metodo que se ejecuta cuando el combo de busqueda pierde el foco
+	 * @param {Ext.Component} this
+	 * @param {Ext.event.Event} event The blur event.
+	 */
+110
+	/**
+	 * Metodo que se ejecuta cuando se escoje una opcion del combo busqueda
+	 * @param {Ext.form.field.ComboBox} combo This combo box
+	 * @param {Ext.data.Model/Ext.data.Model[]} record With {@link #multiSelect} `false`, the value will be
+	 * a single record. With {@link #multiSelect} `true`, the value will be an array of records.
+	 */

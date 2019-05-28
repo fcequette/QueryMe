@@ -17,7 +17,13 @@ Ext.define('Query.Application', {
 
     stores: [
       'Query.store.Paneles',
-      'Query.store.Preguntas'
+      'Query.store.Preguntas',
+      'Query.store.Preguntasxpanel',
+      'Query.store.Opciones',
+      'Query.store.Opcionesxpregunta',
+
+
+
         // TODO: add global / shared stores here
     ],
 

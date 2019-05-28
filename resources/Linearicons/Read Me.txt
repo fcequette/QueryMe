@@ -1,0 +1,12 @@
+Thank you for purchasing the Linearicons icon pack. I hope you enjoy this set.
+
+All icons in this package have been designed on a 20x20 grid and they look their best when used at sizes that are a multiple of 20px. For example, 20px, 40px and 60px.
+
+The icons come in different formats. To access all icons in a single file, you can use the PSD, PDF or the AI (Adobe Illustrator) file.
+This package comes with a desktop font which you can install and use in any application that allows choosing custom fonts for your type. Refer to the "Read Me.txt" file inside the "Fonts" directory to learn more.
+To access the icons via the IcoMoon app (http://icomoon.io/app), you can import the "Linearicons.icomoon.json" file. Using this app, you can make custom webfonts or generate SVG sprites.
+To access the icons as separate files, look under the "SVG" or "EPS" directories. The "PNG" folder contains all icons as raster images, in 4 different sizes.
+The CSH file included in this pack is a Photoshop Custom Shapes file. By opening this file, all icons will get added to Photoshop, which can then be accessed via the Custom Shape Tool. You may need to restart Photoshop after opening the CSH file.
+
+Follow me on Twitter @KingPerxis (https://twitter.com/KingPerxis) to receive updates.
+If you have any questions or suggestions regarding this package, feel free to email me@perxis.com

@@ -34,12 +34,13 @@ Ext.define('Query.view.main.Main', {
         },
         title: {
             bind: {
-                text: '{name}'
+                //text: '{name}'
+                text: ' <img src="/logo_sampaoli.png" border="0" width="200" height="80">'
             },
             flex: 0
         },
-        iconCls: 'fa-th-list'
-        ,style: "background-color:"+localStorage.getItem('colorPrincipal')
+        //iconCls: 'fa-th-list'
+        style: "background-color:"+localStorage.getItem('colorPrincipal')
 
     },
 
@@ -80,6 +81,7 @@ Ext.define('Query.view.main.Main', {
 
     items: [{
       title: 'Carga de preguntas'
+      ,iconCls: 'fa-question'
       ,header:{
         style: "background-color:"+localStorage.getItem('colorPrincipal')
       },
@@ -90,7 +92,7 @@ Ext.define('Query.view.main.Main', {
 
     },{
         title: 'Resultados',
-        iconCls: 'fa-question',
+        iconCls: 'fa-chart-area',
         header:{
           style: "background-color:"+localStorage.getItem('colorPrincipal')
         },
