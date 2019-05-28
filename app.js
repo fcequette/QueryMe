@@ -35,6 +35,7 @@ Ext.Ajax._defaultHeaders = {
 Ext.override(Ext, {
   cq1: function(selector) {
     return Ext.ComponentQuery.query(selector)[0];
+  }
 });
 
 Ext.define('Torneo.overrides.grid.column.Action', {
