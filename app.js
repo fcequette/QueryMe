@@ -102,7 +102,7 @@ Ext.define('Torneo.overrides.grid.column.Action', {
 });
 
 Ext.Loader.loadScript({
-			 url: 'http://grupobinario.sytes.net:8080/opciones'
+			 url: 'http://grupobinario.sytes.net/apiQM/opciones'
 			,onLoad: function(){
 				console.info('Opciones agregadas correctamentes!');
 			}

@@ -40,7 +40,7 @@ Ext.define('Query.view.main.Main', {
             flex: 0
         },
         //iconCls: 'fa-th-list'
-        style: "background-color:"+localStorage.getItem('colorPrincipal')
+        style: "background-color: transparent"
 
     },
 
@@ -92,7 +92,8 @@ Ext.define('Query.view.main.Main', {
 
     },{
         title: 'Resultados',
-        iconCls: 'fa-chart-area',
+        // iconCls: 'fa-chart-area',
+        iconCls: 'fa-question',
         header:{
           style: "background-color:"+localStorage.getItem('colorPrincipal')
         },

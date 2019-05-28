@@ -13,6 +13,7 @@ height:window.innerHeight-10
 ,layout: 'hbox',
 defaults: {
     flex: 1
+    ,padding: '0 10 0 10'
 },
 items:[{
    title:'Panel'
@@ -92,12 +93,17 @@ items:[{
               return '<p style="font-size:10px!default;color:black!important">'+a+'</p>';
             }
           },{
-            text: 'Eliminar',
-            glyph:'xe811@Linearicons' ,
+            //text: 'Eliminar',
+            //glyph:'xe811@Linearicons' ,
             xtype: 'actioncolumn',
-            width:'15%',
-            align:'center',
-              handler: function (grid, rowIndex, colIndex) {
+            width:50,
+            items: [{
+                iconCls: 'x-fa fa-cog',
+                //width:'15%',
+                //align:'center',
+            }]
+
+            ,  handler: function (grid, rowIndex, colIndex) {
                 var rec = grid.getStore().getAt(rowIndex);
                 Ext.Msg.show({
                      title:'¿Eliminar el panel?',
@@ -138,7 +144,7 @@ items:[{
               }
 
             },{
-              text: 'Editar',
+              //text: 'Editar',
               xtype: 'actioncolumn',
               width:'15%',
               align:'center',
@@ -327,8 +333,12 @@ items:[{
   }]
   ,store:'Preguntasxpanel'
   ,columns: [  { text: 'Título',  dataIndex: 'texto',width:'70%',align:'center' },
-               { text: 'Eliminar',  xtype: 'actioncolumn',width:'15%',align:'center',
-               glyph:'xe811@Linearicons'
+               {
+                 //text: 'Eliminar',
+                xtype: 'actioncolumn',
+                width:'15%',
+                align:'center',
+                glyph:'xe811@Linearicons'
                ,handler: function(grid, rowIndex, colIndex){
                  var rec = grid.getStore().getAt(rowIndex);
                  Ext.Msg.show({
@@ -363,7 +373,11 @@ items:[{
                   });
                }
               },
-               { text: 'Editar',  xtype: 'actioncolumn',width:'15%',align:'center',
+               {
+              //text: 'Editar',
+               xtype: 'actioncolumn',
+               width:'15%',
+               align:'center',
                glyph:'xe811@Linearicons'
                ,handler: function (grid, rowIndex, colIndex) {
                    var rec = grid.getStore().getAt(rowIndex);
@@ -556,7 +570,7 @@ items:[{
     }]
     ,columns: [  { text: 'valor',  dataIndex: 'texto',width:'70%',align:'center' },
                   {
-                  text: 'Eliminar',
+                //  text: 'Eliminar',
                   xtype: 'actioncolumn',
                   width:'15%',
                   align:'center',
@@ -595,9 +609,10 @@ items:[{
                      });
                   }
                  },{
-                    text: 'Editar',
+                    //text: 'Editar',
                     xtype: 'actioncolumn',
-                    width:'15%',align:'center',
+                    width:'15%',
+                    align:'center',
                     glyph:'xe811@Linearicons' ,
                     handler: function (grid, rowIndex, colIndex) {
                         var rec = grid.getStore().getAt(rowIndex);
@@ -618,17 +633,17 @@ items:[{
                                       ,listeners:{
                                         click: function(btn,e) {
                                           btn.up('form').submit({
-                                          url: 'http://grupobinario.sytes.net/apiQM/opciones'
-                                          ,jsonSubmit:true
-                                          ,success: function(){
-                                            btn.up('form').up('window').close()
-                                            Ext.getStore('Opcionesxpregunta').reload();
+                                              url: 'http://grupobinario.sytes.net/apiQM/opciones'
+                                              ,jsonSubmit:true
+                                              ,success: function(){
+                                                btn.up('form').up('window').close()
+                                                Ext.getStore('Opcionesxpregunta').reload();
 
-                                          }
-                                          ,failure: function(){
-                                            Ext.Msg.alert('Atención', 'No se puede editar la opción')
-                                          }
-                                        });
+                                              }
+                                              ,failure: function(){
+                                                Ext.Msg.alert('Atención', 'No se puede editar la opción')
+                                              }
+                                          });
                                         }
                                       }
                                     }]
