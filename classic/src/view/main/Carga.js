@@ -52,7 +52,7 @@ items:[{
 
                               }
                               ,failure: function(){
-                                Ext.msg.alert('Atención', 'No se puede cargar el panel')
+                                Ext.Msg.alert('Atención', 'No se puede cargar el panel')
                               }
                             });
                             }
@@ -172,7 +172,7 @@ items:[{
                                         Ext.getStore('Paneles').reload();
                                       }
                                       ,failure: function(){
-                                        Ext.msg.alert('Atención', 'No se pudo modificar el Panel')
+                                        Ext.Msg.alert('Atención', 'No se pudo modificar el Panel')
                                       }
                                     });
                                     }
@@ -268,7 +268,7 @@ items:[{
 
                         }
                         ,failure: function(){
-                            Ext.msg.alert('Atención', 'Error al guardar la pregunta')
+                            Ext.Msg.alert('Atención', 'Error al guardar la pregunta')
                         }
                       });
                       }
@@ -349,7 +349,7 @@ items:[{
                                 Ext.getStore('Preguntas').reload();
                               }
                               ,failure: function(){
-                                Ext.msg.alert('Atención', 'La pregunta no fue eliminada');
+                                Ext.Msg.alert('Atención', 'La pregunta no fue eliminada');
 
                               }
                             });
@@ -465,12 +465,12 @@ items:[{
         console.log('que onda',a,b);
         Ext.ComponentQuery.query('#gridOpciones')[0].setTitle(b.data.texto);
         Ext.getStore('Opcionesxpregunta').load({
-          params:{idpregunta:b.data.idpregunta}
+          params:{idpregunta:b.data.idpreguntas}
           ,success: function(){
-
+            console.log('se deberian cargar las preguntas')
           }
           ,failure:function(){
-
+            Ext.Msg.alert('Atención', 'No se pueden cargar las preguntas del panel')
           }
 
         });
@@ -524,7 +524,7 @@ items:[{
 
                     }
                     ,failure: function(){
-                      Ext.msg.alert('Atención','No se pudo cargar la opción' );
+                      Ext.Msg.alert('Atención','No se pudo cargar la opción' );
 
                     }
                   });
@@ -555,7 +555,11 @@ items:[{
       }
     }]
     ,columns: [  { text: 'valor',  dataIndex: 'texto',width:'70%',align:'center' },
-                  { text: 'Eliminar',  xtype: 'actioncolumn',width:'15%',align:'center',
+                  {
+                  text: 'Eliminar',
+                  xtype: 'actioncolumn',
+                  width:'15%',
+                  align:'center',
                   glyph:'xe811@Linearicons'
                   ,handler: function (grid, rowIndex, colIndex) {
                     var rec = grid.getStore().getAt(rowIndex);
@@ -569,17 +573,16 @@ items:[{
                                Ext.Ajax.request({
                                  url: 'http://grupobinario.sytes.net/apiQM/opciones',
                                  jsonSubmit:true,
-                                 params:{
+                                 jsonData:{
                                    idopcion: rec.get('idopcion'),
                                    delete: true
                                  }
 
                                  ,success: function(){
-                                   console.log('hola');
+                                   Ext.getStore('Opcionesxpregunta').reload();
                                  }
                                  ,failure: function(){
-                                   console.log('chau');
-
+                                   Ext.Msg.alert('Atención', 'No se puede eliminar la opcion')
                                  }
                                });
 
@@ -591,8 +594,10 @@ items:[{
                          }
                      });
                   }
-                 },
-                    { text: 'Editar',  xtype: 'actioncolumn',width:'15%',align:'center',
+                 },{
+                    text: 'Editar',
+                    xtype: 'actioncolumn',
+                    width:'15%',align:'center',
                     glyph:'xe811@Linearicons' ,
                     handler: function (grid, rowIndex, colIndex) {
                         var rec = grid.getStore().getAt(rowIndex);
@@ -604,7 +609,7 @@ items:[{
                                   xtype: 'form',
                                   itemId:'formPanel',
                                   bodyPadding:20,
-                           dockedItems:[{
+                                  dockedItems:[{
                                     dock:'bottom',
                                     xtype:'toolbar',
                                     items:['->',{
@@ -621,7 +626,7 @@ items:[{
 
                                           }
                                           ,failure: function(){
-
+                                            Ext.Msg.alert('Atención', 'No se puede editar la opción')
                                           }
                                         });
                                         }
@@ -648,8 +653,7 @@ items:[{
 
                                 }]
                              }).show();
-
-                    }
+                        }
                    },
               ]
 }]
@@ -659,135 +663,3 @@ Ext.define('KitchenSink.store.MobileOS', {
     alias: 'store.mobile-os',
     fields: ['os', 'data1' ],
 });
-
-// Ext.define('WindowPanel', {
-//       extend:'Ext.window.Window',
-//
-// closeAction:'method-destroy',
-//         width:  500,
-//         title: 'Cargar',
-//         modal: true,
-//         items:[{
-//           xtype: 'form',
-//           itemId:'formPanel',
-//           bodyPadding:20,
-//
-//    dockedItems:[{
-//             dock:'bottom',
-//             xtype:'toolbar',
-//             items:['->',{
-//               text: 'Guardar'
-//               ,itemId:'btnPanel'
-//               ,listeners:{
-//                 click: function(btn,e) {
-//                   btn.up('form').submit({
-//                   url: 'http://grupobinario.sytes.net:8080/paneles'
-//                   ,jsonSubmit:true
-//                   ,success: function(){
-//                     btn.up('form').up('window').close()
-//                     Ext.getStore('Paneles').reload();
-//
-//                   }
-//                   ,failure: function(){
-//
-//                   }
-//                 });
-//                 }
-//               }
-//             }]
-//           }]
-//           ,items:[{
-//             xtype: 'textfield',
-//             itemId: 'updatePanel',
-//             name: 'update',
-//             hidden: true,
-//             width:  400
-//
-//           },{
-//             fieldLabel:'Titulo del panel',
-//             xtype: 'textarea',
-//             itemId: 'txtPanel',
-//             name: 'texto',
-//             width:  400,
-//
-//           }]
-//
-//         }]
-//      });
-//      Ext.define('WindowPregunta', {
-//            //  height: '50%',
-//            extend: 'Ext.window.Window',
-//            closeAction:'method-destroy',
-//
-//              width:  500,
-//              title: 'Cargar',
-//              modal: true,
-//              items:[{
-//                xtype: 'form',
-//                itemId: 'formPregunta',
-//                bodyPadding:20,
-//         dockedItems:[{
-//                  dock:'bottom',
-//                  xtype:'toolbar',
-//                  items:['->',{
-//                    text: 'Guardar'
-//                    ,itemId:'btnPregunta'
-//                    ,listeners:{
-//                      click: function(btn,e) {
-//                        btn.up('form').submit({
-//                        url: 'http://grupobinario.sytes.net:8080/preguntas'
-//                        ,jsonSubmit:true
-//                        ,success: function(){
-//                          btn.up('form').up('window').close()
-//                          Ext.getStore('Preguntasxpanel').reload();
-//
-//                        }
-//                        ,failure: function(){
-//
-//                        }
-//                      });
-//                      }
-//                    }
-//                  }]
-//                }]
-//                ,items:[{
-//                  fieldLabel:'idpanel',
-//                  xtype: 'textfield',
-//                  itemId: 'txtPanel',
-//                  name: 'idpanel',
-//                  width:  400,
-//                  //value: this.config.idpanel
-//
-//                },{
-//                  fieldLabel:'update',
-//                  xtype: 'textfield',
-//                  itemId: 'updatePregunta',
-//                  name: 'update',
-//                  width:  400,
-//
-//                },{
-//                  fieldLabel:'Pregunta',
-//                  xtype: 'textarea',
-//                  itemId: 'txtPregunta',
-//                  name: 'texto',
-//                  width:  400,
-//
-//                },{
-//                  fieldLabel:'Tipo',
-//                  xtype: 'combobox',
-//                  itemId: 'tipoPreg',
-//                  name: 'tipo',
-//                  width:  400,
-//                  displayField:'tipo',
-//                  store:[ {
-//                    'tipo':'selectfield',
-//
-//                  },{
-//                    'tipo':'textfield',
-//
-//                  }]
-//
-//                }]
-//
-//              }]
-//           });
