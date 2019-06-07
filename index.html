@@ -51,7 +51,94 @@
 
 </head>
 <body>
+	 <!-- <div id="preloader" style="background-color:red; height: 100%; margin: 0;">
+		<div class="spin">
+			<div class="spinner">
+					<div class="lds-ripple"><div></div><div></div></div>
+			</div>
+		</div>
+	</div>-->
+
   <style>
+	@import url("resources/Linearicons/Font/classicon.css");
+	<!-- @import url("resources/font-awesome-4.3.0/css/font-awesome.css");
+	@import url("resources/font-awesome-4.3.0/css/font-awesome.min.css");-->
+
+	@import "compass/css3";
+	@font-face {
+	   font-family: Linearicons;
+	   font-style: normal;
+	   font-weight: normal;
+	   src: url('resources/Linearicons/Font/Linearicons.ttf');
+	}
+	/*@font-face {
+	   font-family: Open Sans;
+	   font-style: normal;
+	   font-weight: normal;
+	   src: url('Open_Sans/OpenSans-Regular.ttf');
+	}*/
+	/*@font-face {
+	   font-family: FontAwesome;
+	   font-style: normal;
+	   font-weight: normal;
+	   src: url('font-awesome-4.3.0/fonts/fontawesome-webfont.ttf');
+	}*/
+	/* .spin {
+ 	left: 50%;
+ 	top: 50%;
+ 	margin-left: -80px;
+ 	margin-top: -80px;
+ 	width: 160px;
+ 	height: 100px;
+ 	position: relative;
+ }*/
+	 .spinner {
+ 	left: 50%;
+ 	margin-left: -30px;
+ 	width: 60px;
+ 	height: 60px;
+ 	position: relative;
+ }
+ .spinner-text {
+ 	text-align: center;
+ 	color: #FFF;
+ 	margin-top: 20px;
+ 	font-size: 14px;
+ 	font-family: Arial;
+ }
+	.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
+}
+
   .x-panel-header-default .x-tool-tool-el {
     background-color: transparent !important;
 }
@@ -73,6 +160,51 @@
 }
 .x-component.x-button.x-button-no-icon.x-button-action.x-component-action.x-haslabel.x-layout-box-item.x-layout-hbox-item.x-stretched{
     background-color: transparent;
+}
+.x-window-header-default .x-tool-img {
+    background-color: #936713 !important;
+}
+.x-window-default {
+    border-color: #936713 !important;
+}
+.x-btn-over.x-btn-default-small {
+    border-color: #936713 !important;
+
+    background-image: none;
+    background-color: #936713 !important;
+
+}
+.x-btn-default-small {
+    border-color: #936713 !important;
+
+    background-image: none;
+    background-color: #936713 !important;
+
+}
+
+.x-window-header-default {
+    font-size: 16px;
+    border-color:#936713 !important;
+    background-color:#936713 !important;
+
+}
+/*.x-window-header-default {
+    font-size: 16px;
+    border-color:#936713 !important;
+    background-color: #936713 !important;
+}*/
+.x-window-header-default-top {
+    background-color: #936713;
+}
+.x-panel-header-navigation {
+    border: 1px solid #936713 !important;
+
+}
+
+.x-boundlist-item-over {
+    color: #fff;
+    background: #936713 !important;
+    border-color:#936713 !important;
 }
 .x-grid-cell-inner{
   p {

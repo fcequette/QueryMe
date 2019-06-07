@@ -12,7 +12,7 @@ Ext.define('Query.view.main.MainController', {
     onItemSelected: function (sender, rec) {
       console.log('llegaaaa',rec.get('idpregunta'));
       Ext.Ajax.request({
-        url: 'http://grupobinario.sytes.net:8080/resultados/'+ rec.get('idpreguntas'),
+        url: 'http://grupobinario.sytes.net/apiQM/resultados/'+ rec.get('idpreguntas'),
         method:'GET',
         success: function(response){
 
@@ -70,6 +70,7 @@ Ext.define('Query.view.main.MainController', {
              height: '100%',
              width:  '100%',
              onEsc: Ext.emptyFn(),
+			 resizable:false,
              closable: false,
              bodyStyle: 'border-color:black;background:url("/fondo_sampaoli.jpg") no-repeat;padding:10px;background-color: black;background-size:100%;background-position: center; ',
              resizable:false
@@ -130,7 +131,7 @@ Ext.define('Query.view.main.MainController', {
           						},{
           							 xtype: 'hiddenfield'
           							,name: 'client_id'
-          							,value: 'testclient'
+          							,value: 'grupobinario'
           						},{
           							 xtype: 'hiddenfield'
           							,name: 'client_secret'
@@ -165,7 +166,7 @@ Ext.define('Query.view.main.MainController', {
                          jsonData.username = jsonData.username.toLowerCase();
                          var myJson = jsonData;
                           Ext.Ajax.request({
-                             url: 'http://grupobinario.sytes.net:8080/oauth'
+                             url: 'http://grupobinario.sytes.net/apiQM/oauth'
                             ,method: 'POST'
                             ,headers: {
                               'Content-Type' : 'application/json'
@@ -193,15 +194,16 @@ Ext.define('Query.view.main.MainController', {
                                 Ext.ComponentQuery.query('#winLogin')[0].close();
                               } else {
                                 Ext.Msg.alert('ERROR', 'Usuario o Contraseña incorrectos', function() {
-                                  //me.view.down('#loginCard textfield[inputType="password"]').focus(true, 100);
+                                  me.view.down('#loginCard textfield[inputType="password"]').focus(true, 100);
                                 });
-                               // me.view.down('#loginCard').setActiveItem(0);
+                                //me.view.down('#loginCard').setActiveItem(0);
                               }
                             }
                             ,failure: function( form, action ) {
                               Ext.Msg.alert('ERROR', 'Problemas de conexión', function() {
-                              //  me.view.down('#loginCard textfield[inputType="password"]').focus(false, 100);
+                               // me.view.down('#loginCard textfield[inputType="password"]').focus(false, 100);
                               });
+							//  Ext.ComponentQuery.query('#winLogin')[0].close();
                             }
                           });
                           }

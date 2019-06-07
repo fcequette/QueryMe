@@ -13,6 +13,7 @@ Ext.define('Query.view.main.List', {
   layout: 'hbox',
 defaults: {
     flex: 1
+	,padding: '0 10 0 10'
 },
 items:[{
    title:'Preguntas'
@@ -20,7 +21,8 @@ items:[{
     style: "background-color:"+localStorage.getItem('colorPrincipal')
   }
   ,xtype:'gridpanel'
-  ,height: 1500
+  ,height: window.innerHeight-10
+  
   //,region: 'center'
   ,store: {
       type: 'personnel'
@@ -92,11 +94,16 @@ items:[{
       style: "background-color:"+localStorage.getItem('colorPrincipal')
     }
     ,hidden:true
-    ,height: 1500
+    ,height: window.innerHeight-10
     ,columns:[{
+      //text: 'N'
+       dataIndex:'id'
+      ,width: '10%'
+      ,align:'left'
+    },{
       text: 'respuestas'
-      ,dataIndex:'data1'
-      ,width: '100%'
+      ,dataIndex:'respuesta'
+      ,width: '90%'
       ,align:'left'
     }]
     ,store: {

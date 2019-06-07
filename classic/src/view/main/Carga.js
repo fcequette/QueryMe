@@ -89,21 +89,30 @@ items:[{
   ,style:'font-size:12px;color:black'
   ,columns: [
           { text: 'Título',  dataIndex: 'texto',width:'70%',align:'left'
-            ,renderer:function(a,b){
-              return '<p style="font-size:10px!default;color:black!important">'+a+'</p>';
+            ,renderer:function(a,b,record){
+		 var data = record.getData();
+		console.log('estos', data.idpanel);
+		if(data.idpanel == 0){
+			return '<b>Panel Bienvenida</b>'
+		}else if(data.idpanel == 99999){ 
+			return '<b>Panel Despedida</b>'
+
+		}else{
+              		return '<p style="font-size:10px!default;color:black!important">'+a+'</p>';
+		}
             }
           },{
             //text: 'Eliminar',
-            //glyph:'xe811@Linearicons' ,
+            glyph:'xe682@Linearicons' ,
             xtype: 'actioncolumn',
             width:50,
-            items: [{
+            /*items: [{
                 iconCls: 'x-fa fa-cog',
                 //width:'15%',
                 //align:'center',
-            }]
+            }]*/
 
-            ,  handler: function (grid, rowIndex, colIndex) {
+            handler: function (grid, rowIndex, colIndex) {
                 var rec = grid.getStore().getAt(rowIndex);
                 Ext.Msg.show({
                      title:'¿Eliminar el panel?',
@@ -124,7 +133,7 @@ items:[{
                              ,success: function(){
                                Ext.getStore('Paneles').reload();
                                Ext.ComponentQuery.query('#gridOpciones')[0].setTitle('');
-                               Ext.ComponentQuery.query('#gridPregunta')[0].setTitle('');
+                               Ext.ComponentQuery.query('#gridPreguntas')[0].setTitle('');
                                Ext.getStore('Preguntasxpanel').removeAll();
                                Ext.getStore('Opcionesxpregunta').removeAll();
                              }
@@ -148,7 +157,7 @@ items:[{
               xtype: 'actioncolumn',
               width:'15%',
               align:'center',
-              glyph:'xe811@Linearicons',
+              glyph:'xe612@Linearicons',
               handler: function (grid, rowIndex, colIndex) {
                     var rec = grid.getStore().getAt(rowIndex);
                     Ext.create('Ext.window.Window', {
@@ -199,7 +208,7 @@ items:[{
                                 itemId: 'idPanel',
                                 name: 'idpanel',
                                 width:  400,
-                                //hidden:true,
+                                hidden:true,
                                 value: rec.get('idpanel')
 
                               },{
@@ -220,8 +229,8 @@ items:[{
             ],
             listeners: {
                 select: function(a,b) {
-                  Ext.ComponentQuery.query('#gridPregunta')[0].setTitle(b.data.texto);
-                  Ext.ComponentQuery.query('#gridPregunta')[0].setConfig('idpanel',b.data.idpanel);
+                  Ext.ComponentQuery.query('#gridPreguntas')[0].setTitle(b.data.texto);
+                  Ext.ComponentQuery.query('#gridPreguntas')[0].setConfig('idpanel',b.data.idpanel);
                   Ext.ComponentQuery.query('#gridOpciones')[0].setTitle('');
                   Ext.getStore('Opcionesxpregunta').removeAll();
                   Ext.getStore('Preguntasxpanel').load({params:{idpanel:b.data.idpanel}});
@@ -229,7 +238,7 @@ items:[{
             }
 },{
   xtype:'gridpanel',
-  itemId:'gridPregunta',
+  itemId:'gridPreguntas',
   title: 'Preguntas',
   region: 'center',
   idpanel:'aaa'
@@ -311,20 +320,21 @@ items:[{
                   name: 'tipo',
                   width:  400,
                   displayField:'tipo',
-                  store:[ {
-                    'tipo':'selectfield',
-
-                  },{
-                    'tipo':'textfield',
-
-                  }]
+                  store:Ext.create('Ext.data.Store', {
+									fields: ['value', 'name'],
+									data : [
+									{"value":"selectfield", "tipo":"selectfield"},
+									{"value":"textfield", "tipo":"textfield"},
+									{"value":"textarea", "tipo":"textarea"}
+									]
+									})
 
                 }]
 
               }]
               ,listeners:{
                 afterRender: function(form,e){
-                  var grid = Ext.ComponentQuery.query('#gridPregunta')[0];
+                  var grid = Ext.ComponentQuery.query('#gridPreguntas')[0];
                   Ext.ComponentQuery.query('#txtPanel')[0].setValue(grid.config.idpanel);
                 }
               }
@@ -338,7 +348,7 @@ items:[{
                 xtype: 'actioncolumn',
                 width:'15%',
                 align:'center',
-                glyph:'xe811@Linearicons'
+                glyph:'xe682@Linearicons'
                ,handler: function(grid, rowIndex, colIndex){
                  var rec = grid.getStore().getAt(rowIndex);
                  Ext.Msg.show({
@@ -352,11 +362,11 @@ items:[{
                               url: 'http://grupobinario.sytes.net/apiQM/preguntas',
                               jsonSubmit:true,
                               jsonData:{
-                                idpanel: rec.get('idpregunta'),
+                                idpregunta: rec.get('idpreguntas'),
                                 delete: true
                               }
                               ,success: function(){
-                                Ext.getStore('Preguntas').reload();
+                                Ext.getStore('Preguntasxpanel').reload();
                               }
                               ,failure: function(){
                                 Ext.Msg.alert('Atención', 'La pregunta no fue eliminada');
@@ -378,7 +388,7 @@ items:[{
                xtype: 'actioncolumn',
                width:'15%',
                align:'center',
-               glyph:'xe811@Linearicons'
+               glyph:'xe612@Linearicons'
                ,handler: function (grid, rowIndex, colIndex) {
                    var rec = grid.getStore().getAt(rowIndex);
                    Ext.create('Ext.window.Window', {
@@ -438,8 +448,8 @@ items:[{
                              },{
                                fieldLabel:'Pregunta',
                                xtype: 'textarea',
-                               itemId: 'idPregunta',
-                               name: 'idpanel',
+                               itemId: 'idPreguntas',
+                               name: 'idpreguntas',
                                width:  400,
                                value: rec.get('idpreguntas')
 
@@ -459,14 +469,14 @@ items:[{
                                ,name: 'tipo',
                                width:  400,
                                displayField:'tipo',
-                               store:[ {
-                                 'tipo':'selectfield',
-
-                               },{
-                                 'tipo':'textfield',
-
-                               }]
-
+                               store:Ext.create('Ext.data.Store', {
+									fields: ['value', 'name'],
+									data : [
+									{"value":"selectfield", "tipo":"selectfield"},
+									{"value":"textfield", "tipo":"textfield"},
+									{"value":"textarea", "tipo":"textarea"}
+									]
+									})
                              }]
 
                            }]
@@ -478,8 +488,9 @@ items:[{
       select: function(a,b){
         console.log('que onda',a,b);
         Ext.ComponentQuery.query('#gridOpciones')[0].setTitle(b.data.texto);
+ Ext.ComponentQuery.query('#gridOpciones')[0].setConfig('idpreguntas',b.data.idpreguntas);
         Ext.getStore('Opcionesxpregunta').load({
-          params:{idpregunta:b.data.idpreguntas}
+          params:{idpreguntas:b.data.idpreguntas}
           ,success: function(){
             console.log('se deberian cargar las preguntas')
           }
@@ -497,6 +508,7 @@ items:[{
     ,title: 'Opciones'
     ,itemId:'gridOpciones'
     ,height: window.innerHeight-10
+,idpreguntas:'vv'
     ,store: 'Opcionesxpregunta'
     ,viewConfig:{
       emptyText: 'Seleccione una pregunta'
@@ -555,26 +567,103 @@ items:[{
               value: false
 
             },{
+              fieldLabel:'Id pregunta',
+              xtype: 'textarea',
+              itemId: 'opt_idpreguntas',
+              name: 'idpreguntas',
+              width:  400,
+
+            },{
               fieldLabel:'Descripcion opcion',
               xtype: 'textarea',
               itemId: 'txtOpcion',
-              name: 'texto',
+              name: 'valorOpcion',
               width:  400,
 
             }]
 
-          }]
+          },{
+		xtype:'button',
+		text: 'Cargar panel para la opci�n',
+		handler: function(btn,e){
+			            Ext.create('Ext.window.Window', {
+                    width:  500,
+                    title: 'Cargar un nuevo Panel',
+                    header:{
+                      style: 'background-color:'+localStorage.getItem('colorPrincipal')
+                    },
+                    modal: true,
+                    items:[{
+                      xtype: 'form',
+                      itemId:'formPanel',
+                      bodyPadding:20,
+
+                      dockedItems:[{
+                        dock:'bottom',
+                        xtype:'toolbar',
+                        items:['->',{
+                          text: 'Guardar'
+                          ,itemId:'btnPanel'
+                          ,listeners:{
+                            click: function(btn,e) {
+                              btn.up('form').submit({
+                              url: 'http://grupobinario.sytes.net/apiQM/paneles'
+                              ,jsonSubmit:true
+                              ,success: function(){
+                                btn.up('form').up('window').close()
+                                Ext.getStore('Paneles').reload();
+
+                              }
+                              ,failure: function(){
+                                Ext.Msg.alert('Atención', 'No se puede cargar el panel')
+                              }
+                            });
+                            }
+                          }
+                        }]
+                      }]
+                      ,items:[{
+                        xtype: 'textfield',
+                        itemId: 'updatePanel',
+                        name: 'update',
+                        hidden: true,
+                        width:  400,
+                        value: false
+
+                      },{
+                        fieldLabel:'Titulo del panel',
+                        xtype: 'textarea',
+                        itemId: 'txtPanel',
+                        name: 'texto',
+                        width:  400,
+
+                      }]
+
+                    }]
+                 }).show();
+
+		}
+		
+	
+	  }]
+	        ,listeners:{
+                afterRender: function(form,e){
+                  var grid = Ext.ComponentQuery.query('#gridOpciones')[0];
+                  Ext.ComponentQuery.query('#opt_idpreguntas')[0].setValue(grid.config.idpreguntas);
+                }
+              }
+
        }).show();
 
       }
     }]
-    ,columns: [  { text: 'valor',  dataIndex: 'texto',width:'70%',align:'center' },
+    ,columns: [  { text: 'valor',  dataIndex: 'valorOpcion',width:'70%',align:'center' },
                   {
                 //  text: 'Eliminar',
                   xtype: 'actioncolumn',
                   width:'15%',
                   align:'center',
-                  glyph:'xe811@Linearicons'
+                  glyph:'xe682@Linearicons'
                   ,handler: function (grid, rowIndex, colIndex) {
                     var rec = grid.getStore().getAt(rowIndex);
                     Ext.Msg.show({
@@ -588,7 +677,7 @@ items:[{
                                  url: 'http://grupobinario.sytes.net/apiQM/opciones',
                                  jsonSubmit:true,
                                  jsonData:{
-                                   idopcion: rec.get('idopcion'),
+                                   idopcion: rec.get('idopciones'),
                                    delete: true
                                  }
 
@@ -613,12 +702,12 @@ items:[{
                     xtype: 'actioncolumn',
                     width:'15%',
                     align:'center',
-                    glyph:'xe811@Linearicons' ,
+                    glyph:'xe612@Linearicons' ,
                     handler: function (grid, rowIndex, colIndex) {
                         var rec = grid.getStore().getAt(rowIndex);
                         Ext.create('Ext.window.Window', {
                                 width:  500,
-                                title: 'Cargar',
+                                title: 'Editar Opci�n',
                                 modal: true,
                                 items:[{
                                   xtype: 'form',
@@ -654,15 +743,31 @@ items:[{
                                     name: 'update',
                                     hidden: true,
                                     width:  400
-                                    ,value: false
+                                    ,value: true
+
+                                  },{
+                                    xtype: 'textfield',
+                                    itemId: 'idopciones',
+                                    name: 'idopciones',
+                                    hidden: true,
+                                    width:  400
+                                    ,value: rec.get('idopciones')
+
+                                  },{
+                                    xtype: 'textfield',
+                                    itemId: 'idpreguntas',
+                                    name: 'idpreguntas',
+                                    hidden: true,
+                                    width:  400
+                                    ,value: rec.get('idpregunta')
 
                                   },{
                                     fieldLabel:'Descripcion de opcion',
                                     xtype: 'textarea',
                                     itemId: 'txtOpcion',
-                                    name: 'texto',
+                                    name: 'valorOpcion',
                                     width:  400,
-                                    value: rec.get('texto')
+                                    value: rec.get('valorOpcion')
 
                                   }]
 

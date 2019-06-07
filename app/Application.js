@@ -29,6 +29,23 @@ Ext.define('Query.Application', {
 
     launch: function () {
         // TODO - Launch the application
+		Ext.Ajax.request({
+			url: 'http://grupobinario.sytes.net/apiQM/empresas',
+			//Guardo las configuraciones de la empresa en el localStorage.
+			success: function(response, opts) {
+				var obj = Ext.decode(response.responseText);
+				console.dir(obj);
+				localStorage.setItem('logo', obj.empresas.logo);
+				localStorage.setItem('empresa', obj.empresas.empresa);
+				localStorage.setItem('encuesta', 1);
+				localStorage.setItem('colorPrincipal', obj.empresas.colorPrincipal);
+				localStorage.setItem('colorSecundario', obj.empresas.colorSecundario);
+			},
+
+			failure: function(response, opts) {
+				console.log('server-side failure with status code ' + response.status);
+			}
+		});
     },
 
     onAppUpdate: function () {
