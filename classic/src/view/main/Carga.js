@@ -90,28 +90,21 @@ items:[{
   ,columns: [
           { text: 'T铆tulo',  dataIndex: 'texto',width:'70%',align:'left'
             ,renderer:function(a,b,record){
-		 var data = record.getData();
-		console.log('estos', data.idpanel);
-		if(data.idpanel == 0){
-			return '<b>Panel Bienvenida</b>'
-		}else if(data.idpanel == 99999){ 
-			return '<b>Panel Despedida</b>'
-
-		}else{
-              		return '<p style="font-size:10px!default;color:black!important">'+a+'</p>';
-		}
+            		 var data = record.getData();
+            		console.log('estos', data.idpanel);
+            		if(data.idpanel == 0){
+            			return '<b>Panel Bienvenida</b>'
+            		}else if(data.idpanel == 99999){
+            			return '<b>Panel Despedida</b>'
+            		}else{
+                  return '<p style="font-size:10px!default;color:black!important">'+a+'</p>';
+            		}
             }
           },{
             //text: 'Eliminar',
             glyph:'xe682@Linearicons' ,
             xtype: 'actioncolumn',
             width:50,
-            /*items: [{
-                iconCls: 'x-fa fa-cog',
-                //width:'15%',
-                //align:'center',
-            }]*/
-
             handler: function (grid, rowIndex, colIndex) {
                 var rec = grid.getStore().getAt(rowIndex);
                 Ext.Msg.show({
@@ -153,7 +146,6 @@ items:[{
               }
 
             },{
-              //text: 'Editar',
               xtype: 'actioncolumn',
               width:'15%',
               align:'center',
@@ -544,10 +536,89 @@ items:[{
                     btn.up('form').submit({
                     url: 'http://grupobinario.sytes.net/apiQM/opciones'
                     ,jsonSubmit:true
-                    ,success: function(){
+                    ,success: function(a,b,c){
+
+                      //var idOpc = b.responseText.result.idOpcion;
+                      var idOpc = 3;
+                      //TODO: aca agarrar el id de la opcion
                       btn.up('form').up('window').close()
                       Ext.getStore('Opcionesxpregunta').reload();
+                      Ext.Msg.confirm('Habilitar Panel', '驴La opci贸n habilita un panel?',
+                      function(btn){
+                      if(btn ==='yes'){
+                            Ext.create('Ext.window.Window', {
+                              width:  500,
+                              title: 'Cargar un nuevo Panel',
+                              header:{
+                                style: 'background-color:'+localStorage.getItem('colorPrincipal')
+                              },
+                              modal: true,
+                              items:[{
+                                xtype: 'form',
+                                itemId:'formPanel',
+                                bodyPadding:20,
 
+                                dockedItems:[{
+                                  dock:'bottom',
+                                  xtype:'toolbar',
+                                  items:['->',{
+                                    text: 'Guardar'
+                                    ,itemId:'btnPanel'
+                                    ,listeners:{
+                                      click: function(btn,e) {
+                                        btn.up('form').submit({
+                                        url: 'http://grupobinario.sytes.net/apiQM/paneles'
+                                        ,jsonSubmit:true
+                                        ,success: function(){
+                                          btn.up('form').up('window').close()
+                                          Ext.getStore('Paneles').reload();
+
+                                        }
+                                        ,failure: function(){
+                                          Ext.Msg.alert('Atenci贸n', 'No se puede cargar el panel')
+                                        }
+                                      });
+                                      }
+                                    }
+                                  }]
+                                }]
+                                ,items:[{
+                                  xtype: 'textfield',
+                                  itemId: 'updatePanel',
+                                  name: 'update',
+                                  hidden: true,
+                                  width:  400,
+                                  value: false
+
+                                },{
+                                  xtype: 'textfield',
+                                  itemId: 'dependiente',
+                                  name: 'idopcion',
+                                  hidden: false,
+                                  width:  400,
+                                  value: idOpc
+
+                                },{
+                                  xtype: 'textfield',
+                                  itemId: 'idopcion',
+                                  name: 'update',
+                                  hidden: false,
+                                  width:  400,
+                                  value: true
+
+                                },{
+                                  fieldLabel:'Titulo del panel',
+                                  xtype: 'textarea',
+                                  itemId: 'txtPanel',
+                                  name: 'texto',
+                                  width:  400,
+
+                                }]
+
+                              }]
+                           }).show();
+                          }
+                        });
                     }
                     ,failure: function(){
                       Ext.Msg.alert('Atenci贸n','No se pudo cargar la opci贸n' );
@@ -581,71 +652,7 @@ items:[{
               width:  400,
 
             }]
-
-          },{
-		xtype:'button',
-		text: 'Cargar panel para la opci髇',
-		handler: function(btn,e){
-			            Ext.create('Ext.window.Window', {
-                    width:  500,
-                    title: 'Cargar un nuevo Panel',
-                    header:{
-                      style: 'background-color:'+localStorage.getItem('colorPrincipal')
-                    },
-                    modal: true,
-                    items:[{
-                      xtype: 'form',
-                      itemId:'formPanel',
-                      bodyPadding:20,
-
-                      dockedItems:[{
-                        dock:'bottom',
-                        xtype:'toolbar',
-                        items:['->',{
-                          text: 'Guardar'
-                          ,itemId:'btnPanel'
-                          ,listeners:{
-                            click: function(btn,e) {
-                              btn.up('form').submit({
-                              url: 'http://grupobinario.sytes.net/apiQM/paneles'
-                              ,jsonSubmit:true
-                              ,success: function(){
-                                btn.up('form').up('window').close()
-                                Ext.getStore('Paneles').reload();
-
-                              }
-                              ,failure: function(){
-                                Ext.Msg.alert('Atenci贸n', 'No se puede cargar el panel')
-                              }
-                            });
-                            }
-                          }
-                        }]
-                      }]
-                      ,items:[{
-                        xtype: 'textfield',
-                        itemId: 'updatePanel',
-                        name: 'update',
-                        hidden: true,
-                        width:  400,
-                        value: false
-
-                      },{
-                        fieldLabel:'Titulo del panel',
-                        xtype: 'textarea',
-                        itemId: 'txtPanel',
-                        name: 'texto',
-                        width:  400,
-
-                      }]
-
-                    }]
-                 }).show();
-
-		}
-		
-	
-	  }]
+	       }]
 	        ,listeners:{
                 afterRender: function(form,e){
                   var grid = Ext.ComponentQuery.query('#gridOpciones')[0];
@@ -707,7 +714,7 @@ items:[{
                         var rec = grid.getStore().getAt(rowIndex);
                         Ext.create('Ext.window.Window', {
                                 width:  500,
-                                title: 'Editar Opci髇',
+                                title: 'Editar Opci贸n',
                                 modal: true,
                                 items:[{
                                   xtype: 'form',
@@ -769,6 +776,11 @@ items:[{
                                     width:  400,
                                     value: rec.get('valorOpcion')
 
+                                  },{
+                                      fieldLabel:'Panel asignado',
+                                      xtype:'textfield',
+                                      value: rec.get('idpanel'),
+                                      editable: false
                                   }]
 
                                 }]
