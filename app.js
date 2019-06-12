@@ -186,7 +186,7 @@ Ext.define('Query.store.store2', {
     }
 });
 Ext.create('Query.store.store2');*/
-Ext.define('Model', {
+/*Ext.define('Model', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'value0',  type: 'string'},
