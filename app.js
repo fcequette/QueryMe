@@ -200,4 +200,23 @@ Ext.define('Model', {
 
       ]
 
+});*/
+Ext.define('Model', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'value0',  type: 'string' ,  defaultValue: 0},
+        {name: 'value1',   type: 'string', defaultValue: 0 },
+        {name: 'value2', type: 'string', defaultValue: 0},
+        {name: 'value3', type: 'string', defaultValue: 0},
+        {name: 'value4', type: 'string', defaultValue: 0}
+    ]
+      ,validators: {
+          value0:     'presence',
+		  value1:     'presence',
+		  value2:	  'presence',
+		  value3:	  'presence',
+		  value4:	  'presence',
+		  value5:	  'presence'
+      }
+
 });

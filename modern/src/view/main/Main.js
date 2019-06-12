@@ -114,11 +114,11 @@ Ext.define('Query.view.main.Main', {
              Ext.ComponentQuery.query('#formini')[0].setActiveItem('#card'+numNext);
            }else if(num>0) {
 		           console.log('entraflo');
-             // var model = Ext.create('Model',Ext.ComponentQuery.query('#card'+num)[0].getValues());
+              var model = Ext.create('Model',Ext.ComponentQuery.query('#card'+num)[0].getValues());
              // console.log('*********',Ext.ComponentQuery.query('#card'+num)[0].getValues());
-             // errors = model.getValidation();
+              errors = model.getValidation();
              // console.log('veeeeeeeeeeeeeeeeeerrrerror', errors);
-             // if( errors.isValid()||Ext.isEmpty(Ext.ComponentQuery.query('#card'+num)[0].items.items)){
+              if( errors.isValid()){
                  Ext.ComponentQuery.query('#btnAnt')[0].show();
                   if(num == 9){
                     btn.hide();
@@ -135,9 +135,9 @@ Ext.define('Query.view.main.Main', {
                         Ext.ComponentQuery.query('#btnGua')[0].show();
                     }
                  }
-             //  }else{
-             //    Ext.Msg.alert('Atención', 'Debe completar todos los campos de la encuesta.', Ext.emptyFn);
-             // }
+              }else{
+                Ext.Msg.alert('Atención', 'Debe completar todos los campos de la encuesta.', Ext.emptyFn);
+             }
           }
            console.log('num',num);
          }
@@ -191,7 +191,7 @@ Ext.define('Query.view.main.Main', {
         console.log('server-side failure with status code ' + response.status);
     }
 });
-Ext.defer(function() {
+/*Ext.defer(function() {
     Ext.getStore('Paneles').each(
       function(rec,e){
         // crea el card
@@ -280,34 +280,112 @@ Ext.defer(function() {
         // }
       });
       console.log('llega');
-    },1000);
+    },1000);*/
   }
   ,initialize:function(bn,e){
-      //console.log('entro');
-      //console.log(Ext.getStore('Paneles').getData());
+    Ext.getStore('Paneles').load({
+      scope: this,
+      callback: function(records, operation, success) {
+        Ext.Ajax.request({
+       url: '/apiQM/empresas',
+      //Guardo las configuraciones de la empresa en el localStorage.
+       success: function(response, opts) {
+         var obj = Ext.decode(response.responseText);
+         console.dir(obj);
+         localStorage.setItem('logo', obj.empresas.logo);
+         localStorage.setItem('empresa', obj.empresas.empresa);
+         localStorage.setItem('encuesta', 1);
+         localStorage.setItem('colorPrincipal', obj.empresas.colorPrincipal);
+         localStorage.setItem('colorSecundario', obj.empresas.colorSecundario);
+       },
 
-       /*Ext.Viewport.add({
-              xtype: 'formpanel',
-              itemId:'portada',
-              width:'100%',
-              height:'100%',
-              bodyPadding: 10,
-              style:'background-color:#1b1d1f!important',
-              defaults:{
-                margin:'50 0'
-              }
-              , items: [
-              {
-                html:'<img width=120px;height:100px; src="http://todalagringa.com.ar/Torneo/logo.png" alt="GRUPO BINARIO">'
-                ,padding:'0 0 0 0'
-                ,margin:'200 0 200 '+window.innerWidth/3
-                ,style: 'background-color:transparent;'
-                ,height:120
-              }]
-      });*/
-      /*Ext.defer(function() {
-         Ext.Viewport.remove(Ext.ComponentQuery.query('#portada')[0],true);
-       }, 1500) ;*/
+       failure: function(response, opts) {
+         alert('server-side failure with status code ' + response.status);
+       }
+      });
+      //Ext.getStore('Paneles').each( function(rec,e){
+      Ext.each(Ext.getStore('Paneles').getData().items,function(rec,e){
+      //Ext.getStore('Paneles').getData().items.forEach(function(rec,e){
+      // alert('la');
+       Ext.ComponentQuery.query('#formini')[0].add({
+        xtype:'formpanel'
+       ,html:'<br><h1 style= "color:#936713;background-color:#fafafa;text-align:center; font-size:18px">'+rec.data.texto+'<h1><br>'
+         ,itemId:'card'+rec.data.orden
+       ,defaults:{
+           style:'background:transparent',
+           labelAlign: 'top',
+           defaultPhonePickerConfig : {
+           doneButton : '<p style="color:'+localStorage.getItem('colorPrincipal')+'">Aceptar</p>',
+           cancelButton : '<p style="color:'+localStorage.getItem('colorPrincipal')+'">Cancelar</p>',
+           style:'background:'+localStorage.getItem('colorPrincipal')
+           }
+       }
+       ,style: 'background:#f5f5f5'
+       ,bodyStyle:'background:#f5f5f5'
+       ,items:[]
+       });
+       //Ext.getStore('Preguntas').each(function(rec2,e){
+       Ext.each(Ext.getStore('Preguntas').getData().items,function(rec2,e){
+
+         if(rec2.data.idpanel == rec.data.idpanel){
+          switch (rec2.data.tipo) {
+           case 'selectfield':
+               Ext.ComponentQuery.query('#card'+rec.data.orden)[0].add({
+                 xtype:rec2.data.tipo
+                 ,emptyText: 'Elige una opción'
+                 ,autoSelect : false
+                 ,label:"<p style='font-size:14px;'>"+rec2.data.texto+"</p>"
+                 ,store:'store'+rec2.data.idpreguntas
+                 ,displayField:'display'+rec2.data.idpreguntas
+                 ,valueField:'value'+rec2.data.idpreguntas
+                 ,alowBlank :false
+                 ,itemId: 'value'+rec2.data.idpreguntas
+                 ,name: 'value'+rec2.data.idpreguntas
+                 ,validators: {
+                   type: 'presence',
+                   message: 'Invalid salary'
+                 }
+                 ,listeners:{
+                 change: function( select, newValue, oldValue, e) {
+                   console.log('abrir un panel', newValue);
+                   if (newValue.data.display4 == 'Si'){
+                     Ext.cq1('#formini').setActiveItem(7);
+                     Ext.ComponentQuery.query('#btnAnt')[0].hide();
+                         Ext.ComponentQuery.query('#btnSig')[0].hide();
+                     Ext.ComponentQuery.query('#btnSigPanel')[0].setConfig('panel',rec.data.orden);
+                     Ext.ComponentQuery.query('#btnSigPanel')[0].show();
+
+
+                   }
+                 }
+                  }
+               });
+             break;
+             case 'textfield':
+               Ext.ComponentQuery.query('#card'+rec.data.orden)[0].add({
+                 xtype:rec2.data.tipo
+                 ,label:"<p style= 'font-size:14px'>"+rec2.data.texto+"</p>"
+                 ,alowBlank :false
+                 ,name: 'value'+rec2.data.idpreguntas
+                 ,itemId: 'value'+rec2.data.idpreguntas
+                 ,validators: {
+                   type: 'presence',
+                   message: 'Invalid salary'
+                 }
+               });
+
+             break;
+           default:
+
+               break;
+           }
+         }
+       });
+
+      });
+      }
+      });
+
 
     }
   }
