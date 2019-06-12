@@ -346,18 +346,20 @@ Ext.define('Query.view.main.Main', {
                    message: 'Invalid salary'
                  }
                  ,listeners:{
-                 change: function( select, newValue, oldValue, e) {
-                   console.log('abrir un panel', newValue);
-                   if (newValue.data.display4 == 'Si'){
-                     Ext.cq1('#formini').setActiveItem(7);
-                     Ext.ComponentQuery.query('#btnAnt')[0].hide();
+                     change: function( select, newValue, oldValue, e) {
+                       console.log('abrir un panel', newValue);
+                       var h = 'habilita'+rec2.data.idpreguntas;
+                       console.log('yayayayayyayayaa',newValue.getData('habilita'+rec2.data.idpreguntas));
+                       console.log('yayayayayyayayaa',newValue.data.h);
+                       console.log('lalala', Object.values(Object.values(newValue)[0])[2])
+                       if (Object.values(Object.values(newValue)[0])[2]){
+                         Ext.cq1('#formini').setActiveItem('#card'+Object.values(Object.values(newValue)[0])[2]);
+                         Ext.ComponentQuery.query('#btnAnt')[0].hide();
                          Ext.ComponentQuery.query('#btnSig')[0].hide();
-                     Ext.ComponentQuery.query('#btnSigPanel')[0].setConfig('panel',rec.data.orden);
-                     Ext.ComponentQuery.query('#btnSigPanel')[0].show();
-
-
-                   }
-                 }
+                         Ext.ComponentQuery.query('#btnSigPanel')[0].setConfig('panel',rec.data.orden);
+                         Ext.ComponentQuery.query('#btnSigPanel')[0].show();
+                       }
+                     }
                   }
                });
              break;
